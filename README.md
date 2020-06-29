@@ -2,6 +2,10 @@
 
 A React wrapper for the RevealJS Presentation Library.
 
+## Installation
+
+`npm install --save revealjs-react`
+
 ## Usage
 
 ```jsx
