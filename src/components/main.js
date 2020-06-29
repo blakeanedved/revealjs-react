@@ -1,27 +1,17 @@
 import React from 'react';
 
-function Link({
+function Main({
   id = undefined,
-  children,
   className = undefined,
   fragment = false,
   fragmentStyle = undefined,
   fragmentIndex = undefined,
-  href = undefined,
-  slide = undefined,
+  children,
 }) {
   return (
-    <a
+    <main
       data-id={id}
       id={id}
-      href={
-        href ||
-        `#/${
-          typeof slide === 'string'
-            ? parseInt(slide, 10) - 1
-            : `${parseInt(slide[0], 10) - 1}/${parseInt(slide[1], 10) - 1}`
-        }`
-      }
       className={
         className +
         (fragment ? ' fragment' : '') +
@@ -30,8 +20,8 @@ function Link({
       data-fragment-index={fragmentIndex}
     >
       {children}
-    </a>
+    </main>
   );
 }
 
-export default Link;
+export default Main;

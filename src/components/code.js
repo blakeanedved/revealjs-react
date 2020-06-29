@@ -5,18 +5,27 @@ function Code({
   children,
   className = undefined,
   escape = undefined,
+  fragment = false,
+  fragmentStyle = undefined,
   fragmentIndex = undefined,
   lineNumbers = undefined,
   noTrim = undefined,
 }) {
   return (
-    <pre data-id={id}>
+    <pre
+      data-id={id}
+      id={id}
+      data-fragment-index={fragmentIndex}
+      className={
+        className +
+        (fragment ? ' fragment' : '') +
+        (fragmentStyle ? ` ${fragmentStyle}` : '')
+      }
+    >
       <code
         data-noexcape={!escape}
         data-trim={!noTrim}
         data-line-numbers={lineNumbers}
-        data-fragment-index={fragmentIndex}
-        className={className}
       >
         {children.code}
       </code>

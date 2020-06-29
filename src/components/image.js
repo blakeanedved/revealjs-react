@@ -4,6 +4,8 @@ function Image({
   id = undefined,
   alt = undefined,
   className = undefined,
+  fragment = false,
+  fragmentStyle = undefined,
   fragmentIndex = undefined,
   height = undefined,
   src,
@@ -12,7 +14,12 @@ function Image({
   return (
     <img
       data-id={id}
-      className={className}
+      id={id}
+      className={
+        className +
+        (fragment ? ' fragment' : '') +
+        (fragmentStyle ? ` ${fragmentStyle}` : '')
+      }
       src={src}
       alt={alt}
       width={width}

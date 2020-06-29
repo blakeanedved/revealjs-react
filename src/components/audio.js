@@ -20,7 +20,9 @@ function Audio({
   autoplay = undefined,
   className = undefined,
   controls = undefined,
+  fragment = false,
   fragmentIndex = undefined,
+  fragmentStyle = undefined,
   lazy = undefined,
   loop = undefined,
   muted = undefined,
@@ -31,7 +33,12 @@ function Audio({
     return (
       <audio
         data-id={id}
-        className={className}
+        id={id}
+        className={
+          className +
+          (fragment ? ' fragment' : '') +
+          (fragmentStyle ? ` ${fragmentStyle}` : '')
+        }
         data-autoplay={autoplay}
         controls={controls}
         muted={muted}
@@ -53,7 +60,12 @@ function Audio({
   return (
     <audio
       data-id={id}
-      className={className}
+      id={id}
+      className={
+        className +
+        (fragment ? ' fragment' : '') +
+        (fragmentStyle ? ` ${fragmentStyle}` : '')
+      }
       data-autoplay={autoplay}
       src={lazy ? false : src}
       data-src={lazy ? src : false}

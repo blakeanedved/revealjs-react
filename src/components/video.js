@@ -18,6 +18,8 @@ function Video({
   autoplay = undefined,
   className = undefined,
   controls = undefined,
+  fragment = false,
+  fragmentStyle = undefined,
   fragmentIndex = undefined,
   height = undefined,
   lazy = undefined,
@@ -31,7 +33,12 @@ function Video({
     return (
       <video
         data-id={id}
-        className={className}
+        id={id}
+        className={
+          className +
+          (fragment ? ' fragment' : '') +
+          (fragmentStyle ? ` ${fragmentStyle}` : '')
+        }
         data-autoplay={autoplay}
         controls={controls}
         muted={muted}
@@ -55,7 +62,12 @@ function Video({
   return (
     <video
       data-id={id}
-      className={className}
+      id={id}
+      className={
+        className +
+        (fragment ? ' fragment' : '') +
+        (fragmentStyle ? ` ${fragmentStyle}` : '')
+      }
       data-autoplay={autoplay}
       src={lazy ? false : src}
       data-src={lazy ? src : false}
