@@ -2,7 +2,10 @@
   "name": "revealjs-react",
   "version": "0.1.0",
   "description": "A React wrapper for the RevealJS Presentation Library.",
-  "keywords": ["React", "Reveal.js"],
+  "keywords": [
+    "React",
+    "Reveal.js"
+  ],
   "main": "index.js",
   "module": "index.esm.js",
   "scripts": {
@@ -11,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blakeanedved/react-revealjs.git"
+    "url": "git+https://github.com/blakeanedved/revealjs-react.git"
   },
   "author": "Blake Nedved <blakeanedved@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/blakeanedved/react-revealjs/issues"
+    "url": "https://github.com/blakeanedved/revealjs-react/issues"
   },
-  "homepage": "https://github.com/blakeanedved/react-revealjs#readme",
+  "homepage": "https://github.com/blakeanedved/revealjs-react#readme",
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
