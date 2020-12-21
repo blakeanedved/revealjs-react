@@ -1,6 +1,6 @@
 {
   "name": "revealjs-react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A React wrapper for the RevealJS Presentation Library.",
   "keywords": [
     "React",
@@ -22,9 +22,9 @@
     "url": "https://github.com/blakeanedved/revealjs-react/issues"
   },
   "homepage": "https://github.com/blakeanedved/revealjs-react#readme",
-  "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+  "peerDependencies": {
+    "react": "^16.0.0 || ^17.0.0",
+    "react-dom": "^16.0.0 || ^17.0.0",
     "reveal.js": "^4.0.2"
   },
   "devDependencies": {
