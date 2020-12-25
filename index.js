@@ -2,12 +2,14 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
 var React = require('react');
-var React__default = _interopDefault(React);
-var Reveal = _interopDefault(require('reveal.js'));
+var Reveal = require('reveal.js');
 require('reveal.js/dist/reveal.css');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+var Reveal__default = /*#__PURE__*/_interopDefaultLegacy(Reveal);
 
 function _typeof(obj) {
   "@babel/helpers - typeof";
@@ -23,6 +25,91 @@ function _typeof(obj) {
   }
 
   return _typeof(obj);
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
 }
 
 var formatMap = {
@@ -66,7 +153,7 @@ function Audio(_ref) {
       src = _ref.src;
 
   if (_typeof(src) === 'object') {
-    return /*#__PURE__*/React__default.createElement("audio", {
+    return /*#__PURE__*/React__default['default'].createElement("audio", {
       "data-id": id,
       id: id,
       className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
@@ -76,7 +163,7 @@ function Audio(_ref) {
       loop: loop,
       "data-fragment-index": fragmentIndex
     }, src.forEach(function (element) {
-      return /*#__PURE__*/React__default.createElement("source", {
+      return /*#__PURE__*/React__default['default'].createElement("source", {
         src: lazy ? false : element,
         "data-src": lazy ? element : false,
         "data-preload": preload,
@@ -85,7 +172,7 @@ function Audio(_ref) {
     }));
   }
 
-  return /*#__PURE__*/React__default.createElement("audio", {
+  return /*#__PURE__*/React__default['default'].createElement("audio", {
     "data-id": id,
     id: id,
     className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
@@ -100,251 +187,124 @@ function Audio(_ref) {
   });
 }
 
-function BlockQuote(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
+function getClassName(className, fragment, fragmentStyle) {
+  var classes = className ? [className] : [];
+  if (fragment) classes.push(fragment);
+  if (fragmentStyle) classes.push(fragmentStyle);
+  if (!classes.length) return undefined;
+  return classes.join(' ');
+}
+function generateBaseComponent(component) {
+  var Component = function Component(props) {
+    return BaseComponent(_objectSpread2(_objectSpread2({}, props), {}, {
+      component: component
+    }));
+  };
+
+  Component.displayName = "".concat(component[0].toUpperCase()).concat(component.slice(1));
+  return Component;
+}
+function BaseComponent(_ref) {
+  var component = _ref.component,
+      id = _ref.id,
+      className = _ref.className,
+      fragment = _ref.fragment,
+      fragmentStyle = _ref.fragmentStyle,
+      fragmentIndex = _ref.fragmentIndex,
       children = _ref.children;
-  return /*#__PURE__*/React__default.createElement("blockquote", {
-    "data-id": id,
+  return /*#__PURE__*/React.createElement(component, {
+    'data-id': id,
     id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    "data-fragment-index": fragmentIndex
-  }, children);
+    className: getClassName(className, fragment, fragmentStyle),
+    'data-fragment-index': fragmentIndex,
+    children: children
+  });
 }
 
+var blockquote = generateBaseComponent('blockquote');
+
 function Code(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
+  var id = _ref.id,
       children = _ref.children,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$escape = _ref.escape,
-      escape = _ref$escape === void 0 ? undefined : _ref$escape,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      _ref$lineNumbers = _ref.lineNumbers,
-      lineNumbers = _ref$lineNumbers === void 0 ? undefined : _ref$lineNumbers,
-      _ref$noTrim = _ref.noTrim,
-      noTrim = _ref$noTrim === void 0 ? undefined : _ref$noTrim;
-  return /*#__PURE__*/React__default.createElement("pre", {
+      language = _ref.language,
+      className = _ref.className,
+      escape = _ref.escape,
+      fragment = _ref.fragment,
+      fragmentStyle = _ref.fragmentStyle,
+      fragmentIndex = _ref.fragmentIndex,
+      lineNumbers = _ref.lineNumbers,
+      noTrim = _ref.noTrim;
+  return /*#__PURE__*/React__default['default'].createElement("pre", {
     "data-id": id,
     id: id,
     "data-fragment-index": fragmentIndex,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : '')
-  }, /*#__PURE__*/React__default.createElement("code", {
-    "data-noexcape": !escape,
+    className: getClassName(className, fragment, fragmentStyle)
+  }, /*#__PURE__*/React__default['default'].createElement("code", {
+    className: language,
+    "data-noescape": !escape,
     "data-trim": !noTrim,
     "data-line-numbers": lineNumbers
   }, children.code));
 }
 
-function Div(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      children = _ref.children;
-  return /*#__PURE__*/React__default.createElement("div", {
-    "data-id": id,
-    id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    "data-fragment-index": fragmentIndex
-  }, children);
-}
+var div = generateBaseComponent('div');
 
-function FigCaption(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      children = _ref.children;
-  return /*#__PURE__*/React__default.createElement("figcaption", {
-    "data-id": id,
-    id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    "data-fragment-index": fragmentIndex
-  }, children);
-}
+var figcaption = generateBaseComponent('figcaption');
 
-function Figure(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      children = _ref.children;
-  return /*#__PURE__*/React__default.createElement("figure", {
-    "data-id": id,
-    id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    "data-fragment-index": fragmentIndex
-  }, children);
-}
+var figure = generateBaseComponent('figure');
 
-function Footer(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      children = _ref.children;
-  return /*#__PURE__*/React__default.createElement("footer", {
-    "data-id": id,
-    id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    "data-fragment-index": fragmentIndex
-  }, children);
-}
+var footer = generateBaseComponent('footer');
 
-function H(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      _ref$size = _ref.size,
-      size = _ref$size === void 0 ? '1' : _ref$size,
-      children = _ref.children;
+var H1 = generateBaseComponent('h1');
+var H2 = generateBaseComponent('h2');
+var H3 = generateBaseComponent('h3');
+var H4 = generateBaseComponent('h4');
+var H5 = generateBaseComponent('h5');
+var H6 = generateBaseComponent('h6');
 
-  if (size === '1') {
-    return /*#__PURE__*/React__default.createElement("h1", {
-      "data-id": id,
-      id: id,
-      className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-      "data-fragment-index": fragmentIndex
-    }, children);
-  }
+function H(props) {
+  var size = props.size,
+      rest = _objectWithoutProperties(props, ["size"]);
 
-  if (size === '2') {
-    return /*#__PURE__*/React__default.createElement("h2", {
-      "data-id": id,
-      id: id,
-      className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-      "data-fragment-index": fragmentIndex
-    }, children);
-  }
+  switch (size) {
+    case 1:
+      return /*#__PURE__*/React__default['default'].createElement(H1, rest);
 
-  if (size === '3') {
-    return /*#__PURE__*/React__default.createElement("h3", {
-      "data-id": id,
-      id: id,
-      className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-      "data-fragment-index": fragmentIndex
-    }, children);
-  }
+    case 2:
+      return /*#__PURE__*/React__default['default'].createElement(H2, rest);
 
-  if (size === '4') {
-    return /*#__PURE__*/React__default.createElement("h4", {
-      "data-id": id,
-      id: id,
-      className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-      "data-fragment-index": fragmentIndex
-    }, children);
-  }
+    case 3:
+      return /*#__PURE__*/React__default['default'].createElement(H3, rest);
 
-  if (size === '5') {
-    return /*#__PURE__*/React__default.createElement("h5", {
-      "data-id": id,
-      id: id,
-      className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-      "data-fragment-index": fragmentIndex
-    }, children);
-  }
+    case 4:
+      return /*#__PURE__*/React__default['default'].createElement(H4, rest);
 
-  if (size === '6') {
-    return /*#__PURE__*/React__default.createElement("h6", {
-      "data-id": id,
-      id: id,
-      className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-      "data-fragment-index": fragmentIndex
-    }, children);
+    case 5:
+      return /*#__PURE__*/React__default['default'].createElement(H5, rest);
+
+    case 6:
+      return /*#__PURE__*/React__default['default'].createElement(H6, rest);
   }
 }
 
-function Header(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      children = _ref.children;
-  return /*#__PURE__*/React__default.createElement("header", {
-    "data-id": id,
-    id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    "data-fragment-index": fragmentIndex
-  }, children);
-}
+var header = generateBaseComponent('header');
 
 function IFrame(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      _ref$height = _ref.height,
-      height = _ref$height === void 0 ? undefined : _ref$height,
-      _ref$lazy = _ref.lazy,
-      lazy = _ref$lazy === void 0 ? undefined : _ref$lazy,
-      _ref$preload = _ref.preload,
-      preload = _ref$preload === void 0 ? undefined : _ref$preload,
+  var id = _ref.id,
+      className = _ref.className,
+      fragment = _ref.fragment,
+      fragmentStyle = _ref.fragmentStyle,
+      fragmentIndex = _ref.fragmentIndex,
+      height = _ref.height,
+      lazy = _ref.lazy,
+      preload = _ref.preload,
       src = _ref.src,
-      _ref$width = _ref.width,
-      width = _ref$width === void 0 ? undefined : _ref$width;
-  return /*#__PURE__*/React__default.createElement("iframe", {
+      width = _ref.width;
+  return /*#__PURE__*/React__default['default'].createElement("iframe", {
     "data-id": id,
     id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    src: lazy ? false : src,
+    className: getClassName(className, fragment, fragmentStyle),
+    src: lazy ? undefined : src,
     "data-src": lazy ? src : false,
     "data-preload": preload,
     width: width,
@@ -361,7 +321,7 @@ function Image(_ref) {
       _ref$className = _ref.className,
       className = _ref$className === void 0 ? undefined : _ref$className,
       _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
+      fragment = _ref$fragment === void 0 ? undefined : _ref$fragment,
       _ref$fragmentStyle = _ref.fragmentStyle,
       fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
       _ref$fragmentIndex = _ref.fragmentIndex,
@@ -371,10 +331,10 @@ function Image(_ref) {
       src = _ref.src,
       _ref$width = _ref.width,
       width = _ref$width === void 0 ? undefined : _ref$width;
-  return /*#__PURE__*/React__default.createElement("img", {
+  return /*#__PURE__*/React__default['default'].createElement("img", {
     "data-id": id,
     id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
+    className: getClassName(className, fragment, fragmentStyle),
     src: src,
     alt: alt,
     width: width,
@@ -383,117 +343,38 @@ function Image(_ref) {
   });
 }
 
-function Li(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      children = _ref.children;
-  return /*#__PURE__*/React__default.createElement("li", {
-    "data-id": id,
-    id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    "data-fragment-index": fragmentIndex
-  }, children);
-}
+var li = generateBaseComponent('li');
 
 function Link(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
+  var id = _ref.id,
       children = _ref.children,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      _ref$href = _ref.href,
-      href = _ref$href === void 0 ? undefined : _ref$href,
-      _ref$slide = _ref.slide,
-      slide = _ref$slide === void 0 ? undefined : _ref$slide;
-  return /*#__PURE__*/React__default.createElement("a", {
+      className = _ref.className,
+      fragment = _ref.fragment,
+      fragmentStyle = _ref.fragmentStyle,
+      fragmentIndex = _ref.fragmentIndex,
+      href = _ref.href,
+      slide = _ref.slide;
+  return /*#__PURE__*/React__default['default'].createElement("a", {
     "data-id": id,
     id: id,
-    href: href || "#/".concat(typeof slide === 'string' ? parseInt(slide, 10) - 1 : "".concat(parseInt(slide[0], 10) - 1, "/").concat(parseInt(slide[1], 10) - 1)),
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
+    href: href || slide && "#/".concat(typeof slide === 'string' ? parseInt(slide, 10) - 1 : "".concat(parseInt(slide[0], 10) - 1, "/").concat(parseInt(slide[1], 10) - 1)),
+    className: getClassName(className, fragment, fragmentStyle),
     "data-fragment-index": fragmentIndex
   }, children);
 }
 
-function Main(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      children = _ref.children;
-  return /*#__PURE__*/React__default.createElement("main", {
-    "data-id": id,
-    id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    "data-fragment-index": fragmentIndex
-  }, children);
-}
+var main = generateBaseComponent('main');
 
 function Note(_ref) {
   var children = _ref.children;
-  return /*#__PURE__*/React__default.createElement("aside", {
+  return /*#__PURE__*/React__default['default'].createElement("aside", {
     className: "notes"
   }, children);
 }
 
-function Ol(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      children = _ref.children;
-  return /*#__PURE__*/React__default.createElement("ol", {
-    "data-id": id,
-    id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    "data-fragment-index": fragmentIndex
-  }, children);
-}
+var ol = generateBaseComponent('ol');
 
-function P(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      children = _ref.children;
-  return /*#__PURE__*/React__default.createElement("p", {
-    "data-id": id,
-    id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    "data-fragment-index": fragmentIndex
-  }, children);
-}
+var p = generateBaseComponent('p');
 
 function RevealJS(_ref) {
   var children = _ref.children,
@@ -613,10 +494,14 @@ function RevealJS(_ref) {
       parallaxBackgroundImage = _ref$parallaxBackgrou === void 0 ? '' : _ref$parallaxBackgrou,
       _ref$parallaxBackgrou2 = _ref.parallaxBackgroundSize,
       parallaxBackgroundSize = _ref$parallaxBackgrou2 === void 0 ? '' : _ref$parallaxBackgrou2,
-      _ref$parallaxBackgrou3 = _ref.parallaxBackgroundHorizontal,
-      parallaxBackgroundHorizontal = _ref$parallaxBackgrou3 === void 0 ? 200 : _ref$parallaxBackgrou3,
-      _ref$parallaxBackgrou4 = _ref.parallaxBackgroundVertical,
-      parallaxBackgroundVertical = _ref$parallaxBackgrou4 === void 0 ? 50 : _ref$parallaxBackgrou4,
+      _ref$parallaxBackgrou3 = _ref.parallaxBackgroundRepeat,
+      parallaxBackgroundRepeat = _ref$parallaxBackgrou3 === void 0 ? '' : _ref$parallaxBackgrou3,
+      _ref$parallaxBackgrou4 = _ref.parallaxBackgroundPosition,
+      parallaxBackgroundPosition = _ref$parallaxBackgrou4 === void 0 ? '' : _ref$parallaxBackgrou4,
+      _ref$parallaxBackgrou5 = _ref.parallaxBackgroundHorizontal,
+      parallaxBackgroundHorizontal = _ref$parallaxBackgrou5 === void 0 ? 200 : _ref$parallaxBackgrou5,
+      _ref$parallaxBackgrou6 = _ref.parallaxBackgroundVertical,
+      parallaxBackgroundVertical = _ref$parallaxBackgrou6 === void 0 ? 50 : _ref$parallaxBackgrou6,
       _ref$width = _ref.width,
       width = _ref$width === void 0 ? 960 : _ref$width,
       _ref$height = _ref.height,
@@ -628,7 +513,7 @@ function RevealJS(_ref) {
       _ref$maxScale = _ref.maxScale,
       maxScale = _ref$maxScale === void 0 ? 2.0 : _ref$maxScale;
   React.useEffect(function () {
-    var deck = new Reveal({
+    var deck = new Reveal__default['default']({
       plugins: plugins,
       controls: controls,
       controlsTutorial: controlsTutorial,
@@ -686,6 +571,8 @@ function RevealJS(_ref) {
       hideInactiveCursor: hideInactiveCursor,
       hideCursorTime: hideCursorTime,
       parallaxBackgroundImage: parallaxBackgroundImage,
+      parallaxBackgroundRepeat: parallaxBackgroundRepeat,
+      parallaxBackgroundPosition: parallaxBackgroundPosition,
       parallaxBackgroundSize: parallaxBackgroundSize,
       parallaxBackgroundHorizontal: parallaxBackgroundHorizontal,
       parallaxBackgroundVertical: parallaxBackgroundVertical,
@@ -696,55 +583,38 @@ function RevealJS(_ref) {
       maxScale: maxScale
     });
     deck.initialize();
-  }, [plugins, controls, controlsTutorial, controlsLayout, controlsBackArrows, progress, slideNumber, showSlideNumber, hashOneBasedIndex, hash, respondToHashChanges, history, keyboard, keyboardCondition, disableLayout, overview, center, touch, loop, rtl, navigationMode, shuffle, fragments, fragmentInURL, embedded, help, pause, showNotes, autoPlayMedia, preloadIframes, autoAnimate, autoAnimateMatcher, autoAnimateEasing, autoAnimateDuration, autoAnimateUnmatched, autoAnimateStyles, autoSlide, autoSlideStoppable, autoSlideMethod, defaultTiming, mouseWheel, previewLinks, postMessage, postMessageEvents, focusBodyOnPageVisibilityChange, transition, transitionSpeed, backgroundTransition, pdfMaxPagesPerSlide, pdfSeparateFragments, pdfPageHeightOffset, viewDistance, mobileViewDistance, display, hideInactiveCursor, hideCursorTime, parallaxBackgroundImage, parallaxBackgroundSize, parallaxBackgroundHorizontal, parallaxBackgroundVertical, width, height, margin, minScale, maxScale]);
-  return /*#__PURE__*/React__default.createElement("div", {
+  }, [plugins, controls, controlsTutorial, controlsLayout, controlsBackArrows, progress, slideNumber, showSlideNumber, hashOneBasedIndex, hash, respondToHashChanges, history, keyboard, keyboardCondition, disableLayout, overview, center, touch, loop, rtl, navigationMode, shuffle, fragments, fragmentInURL, embedded, help, pause, showNotes, autoPlayMedia, preloadIframes, autoAnimate, autoAnimateMatcher, autoAnimateEasing, autoAnimateDuration, autoAnimateUnmatched, autoAnimateStyles, autoSlide, autoSlideStoppable, autoSlideMethod, defaultTiming, mouseWheel, previewLinks, postMessage, postMessageEvents, focusBodyOnPageVisibilityChange, transition, transitionSpeed, backgroundTransition, pdfMaxPagesPerSlide, pdfSeparateFragments, pdfPageHeightOffset, viewDistance, mobileViewDistance, display, hideInactiveCursor, hideCursorTime, parallaxBackgroundImage, parallaxBackgroundRepeat, parallaxBackgroundPosition, parallaxBackgroundSize, parallaxBackgroundHorizontal, parallaxBackgroundVertical, width, height, margin, minScale, maxScale]);
+  return /*#__PURE__*/React__default['default'].createElement("div", {
     className: "reveal"
-  }, /*#__PURE__*/React__default.createElement("div", {
+  }, /*#__PURE__*/React__default['default'].createElement("div", {
     className: "slides"
   }, children));
 }
 
 function Slide(_ref) {
-  var _ref$autoslide = _ref.autoslide,
-      autoslide = _ref$autoslide === void 0 ? undefined : _ref$autoslide,
-      _ref$autoAnimate = _ref.autoAnimate,
-      autoAnimate = _ref$autoAnimate === void 0 ? undefined : _ref$autoAnimate,
-      _ref$backgroundColor = _ref.backgroundColor,
-      backgroundColor = _ref$backgroundColor === void 0 ? undefined : _ref$backgroundColor,
-      _ref$backgroundImage = _ref.backgroundImage,
-      backgroundImage = _ref$backgroundImage === void 0 ? undefined : _ref$backgroundImage,
-      _ref$backgroundSize = _ref.backgroundSize,
-      backgroundSize = _ref$backgroundSize === void 0 ? undefined : _ref$backgroundSize,
-      _ref$backgroundPositi = _ref.backgroundPosition,
-      backgroundPosition = _ref$backgroundPositi === void 0 ? undefined : _ref$backgroundPositi,
-      _ref$backgroundRepeat = _ref.backgroundRepeat,
-      backgroundRepeat = _ref$backgroundRepeat === void 0 ? undefined : _ref$backgroundRepeat,
-      _ref$backgroundOpacit = _ref.backgroundOpacity,
-      backgroundOpacity = _ref$backgroundOpacit === void 0 ? undefined : _ref$backgroundOpacit,
-      _ref$backgroundVideo = _ref.backgroundVideo,
-      backgroundVideo = _ref$backgroundVideo === void 0 ? undefined : _ref$backgroundVideo,
-      _ref$backgroundVideoL = _ref.backgroundVideoLoop,
-      backgroundVideoLoop = _ref$backgroundVideoL === void 0 ? undefined : _ref$backgroundVideoL,
-      _ref$backgroundVideoM = _ref.backgroundVideoMuted,
-      backgroundVideoMuted = _ref$backgroundVideoM === void 0 ? undefined : _ref$backgroundVideoM,
-      _ref$backgroundIframe = _ref.backgroundIframe,
-      backgroundIframe = _ref$backgroundIframe === void 0 ? undefined : _ref$backgroundIframe,
-      _ref$backgroundIntera = _ref.backgroundInteractive,
-      backgroundInteractive = _ref$backgroundIntera === void 0 ? undefined : _ref$backgroundIntera,
+  var autoslide = _ref.autoslide,
+      autoAnimate = _ref.autoAnimate,
+      backgroundColor = _ref.backgroundColor,
+      backgroundImage = _ref.backgroundImage,
+      backgroundSize = _ref.backgroundSize,
+      backgroundPosition = _ref.backgroundPosition,
+      backgroundRepeat = _ref.backgroundRepeat,
+      backgroundOpacity = _ref.backgroundOpacity,
+      backgroundVideo = _ref.backgroundVideo,
+      backgroundVideoLoop = _ref.backgroundVideoLoop,
+      backgroundVideoMuted = _ref.backgroundVideoMuted,
+      backgroundIframe = _ref.backgroundIframe,
+      backgroundInteractive = _ref.backgroundInteractive,
       children = _ref.children,
-      _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$transition = _ref.transition,
-      transition = _ref$transition === void 0 ? undefined : _ref$transition,
-      _ref$transitionSpeed = _ref.transitionSpeed,
-      transitionSpeed = _ref$transitionSpeed === void 0 ? undefined : _ref$transitionSpeed,
-      _ref$uncounted = _ref.uncounted,
-      uncounted = _ref$uncounted === void 0 ? undefined : _ref$uncounted;
-  return /*#__PURE__*/React__default.createElement("section", {
+      id = _ref.id,
+      transition = _ref.transition,
+      transitionSpeed = _ref.transitionSpeed,
+      visibility = _ref.visibility;
+  return /*#__PURE__*/React__default['default'].createElement("section", {
     "data-autoslide": autoslide,
     id: id,
     "data-auto-animate": autoAnimate,
-    "data-visibility": uncounted ? 'uncounted' : undefined,
+    "data-visibility": visibility,
     "data-background-color": backgroundColor,
     "data-background-image": backgroundImage,
     "data-background-size": backgroundSize,
@@ -761,45 +631,9 @@ function Slide(_ref) {
   }, children);
 }
 
-function Span(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      children = _ref.children;
-  return /*#__PURE__*/React__default.createElement("span", {
-    "data-id": id,
-    id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    "data-fragment-index": fragmentIndex
-  }, children);
-}
+var span = generateBaseComponent('span');
 
-function Ul(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      children = _ref.children;
-  return /*#__PURE__*/React__default.createElement("ul", {
-    "data-id": id,
-    id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    "data-fragment-index": fragmentIndex
-  }, children);
-}
+var ul = generateBaseComponent('ul');
 
 var formatMap$1 = {
   '3gp': 'video/3gpp',
@@ -815,39 +649,26 @@ var formatMap$1 = {
 };
 
 function Video(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$autoplay = _ref.autoplay,
-      autoplay = _ref$autoplay === void 0 ? undefined : _ref$autoplay,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$controls = _ref.controls,
-      controls = _ref$controls === void 0 ? undefined : _ref$controls,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      _ref$height = _ref.height,
-      height = _ref$height === void 0 ? undefined : _ref$height,
-      _ref$lazy = _ref.lazy,
-      lazy = _ref$lazy === void 0 ? undefined : _ref$lazy,
-      _ref$loop = _ref.loop,
-      loop = _ref$loop === void 0 ? undefined : _ref$loop,
-      _ref$muted = _ref.muted,
-      muted = _ref$muted === void 0 ? undefined : _ref$muted,
-      _ref$preload = _ref.preload,
-      preload = _ref$preload === void 0 ? undefined : _ref$preload,
-      _ref$width = _ref.width,
-      width = _ref$width === void 0 ? undefined : _ref$width,
+  var id = _ref.id,
+      autoplay = _ref.autoplay,
+      className = _ref.className,
+      controls = _ref.controls,
+      fragment = _ref.fragment,
+      fragmentStyle = _ref.fragmentStyle,
+      fragmentIndex = _ref.fragmentIndex,
+      height = _ref.height,
+      lazy = _ref.lazy,
+      loop = _ref.loop,
+      muted = _ref.muted,
+      preload = _ref.preload,
+      width = _ref.width,
       src = _ref.src;
 
-  if (_typeof(src) === 'object') {
-    return /*#__PURE__*/React__default.createElement("video", {
+  if (Array.isArray(src)) {
+    return /*#__PURE__*/React__default['default'].createElement("video", {
       "data-id": id,
       id: id,
-      className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
+      className: getClassName(className, fragment, fragmentStyle),
       "data-autoplay": autoplay,
       controls: controls,
       muted: muted,
@@ -855,22 +676,24 @@ function Video(_ref) {
       height: height,
       width: width,
       "data-fragment-index": fragmentIndex
-    }, src.forEach(function (element) {
-      return /*#__PURE__*/React__default.createElement("source", {
-        src: lazy ? false : element,
+    }, src.map(function (element) {
+      var _$exec;
+
+      return /*#__PURE__*/React__default['default'].createElement("source", {
+        src: lazy ? '' : element,
         "data-src": lazy ? element : false,
         "data-preload": preload,
-        type: formatMap$1[/\.[^.]+$/.exec(element)]
+        type: formatMap$1[((_$exec = /\.[^.]+$/.exec(element)) === null || _$exec === void 0 ? void 0 : _$exec[0]) || 'mp4']
       });
     }));
   }
 
-  return /*#__PURE__*/React__default.createElement("video", {
+  return /*#__PURE__*/React__default['default'].createElement("video", {
     "data-id": id,
     id: id,
     className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
     "data-autoplay": autoplay,
-    src: lazy ? false : src,
+    src: lazy ? '' : src,
     "data-src": lazy ? src : false,
     "data-preload": preload,
     controls: controls,
@@ -883,25 +706,31 @@ function Video(_ref) {
 }
 
 exports.Audio = Audio;
-exports.BlockQuote = BlockQuote;
+exports.BlockQuote = blockquote;
 exports.Code = Code;
-exports.Div = Div;
-exports.FigCaption = FigCaption;
-exports.Figure = Figure;
-exports.Footer = Footer;
+exports.Div = div;
+exports.FigCaption = figcaption;
+exports.Figure = figure;
+exports.Footer = footer;
 exports.H = H;
-exports.Header = Header;
+exports.H1 = H1;
+exports.H2 = H2;
+exports.H3 = H3;
+exports.H4 = H4;
+exports.H5 = H5;
+exports.H6 = H6;
+exports.Header = header;
 exports.IFrame = IFrame;
 exports.Image = Image;
-exports.Li = Li;
+exports.Li = li;
 exports.Link = Link;
-exports.Main = Main;
+exports.Main = main;
 exports.Note = Note;
-exports.Ol = Ol;
-exports.P = P;
+exports.Ol = ol;
+exports.P = p;
 exports.RevealJS = RevealJS;
 exports.Slide = Slide;
-exports.Span = Span;
-exports.Ul = Ul;
+exports.Span = span;
+exports.Ul = ul;
 exports.Video = Video;
 //# sourceMappingURL=index.js.map
