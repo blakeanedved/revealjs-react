@@ -2,7 +2,7 @@
 export interface BaseProps {
     id?: string;
     className?: string;
-    fragment?: string;
+    fragment?: boolean;
     fragmentStyle?: string;
     fragmentIndex?: number;
 }
@@ -11,7 +11,7 @@ export interface Props extends BaseProps {
     component: SimpleComponent;
     children: React.ReactNode;
 }
-export declare function getClassName(className: string | undefined, fragment: string | undefined, fragmentStyle: string | undefined): string | undefined;
+export declare function getClassName(className: BaseProps["className"], fragment: BaseProps["fragment"], fragmentStyle: BaseProps["fragmentStyle"]): string | undefined;
 export declare function generateBaseComponent(component: SimpleComponent): {
     (props: Omit<Props, 'component'>): import("react").DetailedReactHTMLElement<{
         'data-id': string | undefined;

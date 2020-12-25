@@ -12,7 +12,7 @@ export interface Props extends Omit<BaseProps, 'component'> {
   size: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
-function H(props: Props) {
+function H(props: Props & { size: number }) {
   const { size, ...rest } = props;
   switch (size) {
     case 1:

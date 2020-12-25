@@ -3,7 +3,7 @@ import { createElement } from 'react';
 export interface BaseProps {
   id?: string;
   className?: string;
-  fragment?: string;
+  fragment?: boolean;
   fragmentStyle?: string;
   fragmentIndex?: number;
 }
@@ -33,12 +33,12 @@ export interface Props extends BaseProps {
 }
 
 export function getClassName(
-  className: string | undefined,
-  fragment: string | undefined,
-  fragmentStyle: string | undefined,
+  className: BaseProps["className"],
+  fragment: BaseProps["fragment"],
+  fragmentStyle: BaseProps["fragmentStyle"],
 ) {
   const classes = className ? [className] : [];
-  if (fragment) classes.push(fragment);
+  if (fragment) classes.push("fragment");
   if (fragmentStyle) classes.push(fragmentStyle);
   if (!classes.length) return undefined;
   return classes.join(' ');

@@ -180,7 +180,7 @@ function Audio(_ref) {
 
 function getClassName(className, fragment, fragmentStyle) {
   var classes = className ? [className] : [];
-  if (fragment) classes.push(fragment);
+  if (fragment) classes.push("fragment");
   if (fragmentStyle) classes.push(fragmentStyle);
   if (!classes.length) return undefined;
   return classes.join(' ');

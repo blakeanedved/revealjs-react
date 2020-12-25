@@ -6,7 +6,7 @@ export interface Props extends BaseProps {
     };
     language?: string;
     escape?: boolean;
-    lineNumbers?: boolean;
+    lineNumbers?: string;
     noTrim?: boolean;
 }
 declare function Code({ id, children, language, className, escape, fragment, fragmentStyle, fragmentIndex, lineNumbers, noTrim, }: Props): JSX.Element;

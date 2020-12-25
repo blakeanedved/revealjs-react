@@ -5,7 +5,7 @@ const react_1 = require("react");
 function getClassName(className, fragment, fragmentStyle) {
     const classes = className ? [className] : [];
     if (fragment)
-        classes.push(fragment);
+        classes.push("fragment");
     if (fragmentStyle)
         classes.push(fragmentStyle);
     if (!classes.length)

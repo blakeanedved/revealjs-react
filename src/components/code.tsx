@@ -5,7 +5,7 @@ export interface Props extends BaseProps {
   children: { code: string };
   language?: string;
   escape?: boolean;
-  lineNumbers?: boolean;
+  lineNumbers?: string;
   noTrim?: boolean;
 }
 
