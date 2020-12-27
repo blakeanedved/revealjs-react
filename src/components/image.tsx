@@ -1,7 +1,7 @@
 import React from 'react';
 import { BaseProps, getClassName } from './BaseComponent';
 
-export interface Props extends BaseProps {
+export interface ImageProps extends BaseProps {
   alt?: string;
   height?: number;
   width?: number;
@@ -18,7 +18,7 @@ function Image({
   height = undefined,
   src,
   width = undefined,
-}: Props) {
+}: ImageProps) {
   return (
     <img
       data-id={id}

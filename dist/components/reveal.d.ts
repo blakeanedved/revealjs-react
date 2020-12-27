@@ -2,7 +2,7 @@ import React from 'react';
 import { Plugin } from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
 import { BackgroundRepeat, TransitionAtoms, TransitionSpeed } from '../types';
-export interface Props {
+export interface RevealJSProps {
     children: React.ReactNode;
     plugins?: Plugin[];
     controls?: boolean;
@@ -83,5 +83,5 @@ pdfMaxPagesPerSlide, pdfSeparateFragments, pdfPageHeightOffset, viewDistance, mo
 parallaxBackgroundSize, // CSS syntax, e.g. "3000px 2000px"
 parallaxBackgroundRepeat, // repeat/repeat-x/repeat-y/no-repeat/initial/inherit
 parallaxBackgroundPosition, // CSS syntax, e.g. "top left"
-parallaxBackgroundHorizontal, parallaxBackgroundVertical, width, height, margin, minScale, maxScale, }: Props): JSX.Element;
+parallaxBackgroundHorizontal, parallaxBackgroundVertical, width, height, margin, minScale, maxScale, }: RevealJSProps): JSX.Element;
 export default RevealJS;

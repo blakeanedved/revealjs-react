@@ -1,6 +1,6 @@
 import React from 'react';
 import { Transitions, TransitionSpeed } from '../types';
-export interface Props {
+export interface SlideProps {
     autoslide?: true;
     autoAnimate?: true;
     backgroundColor?: string;
@@ -20,5 +20,5 @@ export interface Props {
     transitionSpeed?: TransitionSpeed;
     visibility?: 'uncounted' | 'hidden';
 }
-declare function Slide({ autoslide, autoAnimate, backgroundColor, backgroundImage, backgroundSize, backgroundPosition, backgroundRepeat, backgroundOpacity, backgroundVideo, backgroundVideoLoop, backgroundVideoMuted, backgroundIframe, backgroundInteractive, children, id, transition, transitionSpeed, visibility, }: Props): JSX.Element;
+declare function Slide({ autoslide, autoAnimate, backgroundColor, backgroundImage, backgroundSize, backgroundPosition, backgroundRepeat, backgroundOpacity, backgroundVideo, backgroundVideoLoop, backgroundVideoMuted, backgroundIframe, backgroundInteractive, children, id, transition, transitionSpeed, visibility, }: SlideProps): JSX.Element;
 export default Slide;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Transitions, TransitionSpeed } from '../types';
 
-export interface Props {
+export interface SlideProps {
   autoslide?: true;
   autoAnimate?: true;
   backgroundColor?: string;
@@ -41,7 +41,7 @@ function Slide({
   transition,
   transitionSpeed,
   visibility,
-}: Props) {
+}: SlideProps) {
   return (
     <section
       data-autoslide={autoslide}

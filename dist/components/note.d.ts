@@ -1,5 +1,6 @@
 import React from 'react';
-declare function Note({ children }: {
+export interface NoteProps {
     children: React.ReactNode;
-}): JSX.Element;
+}
+declare function Note({ children }: NoteProps): JSX.Element;
 export default Note;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BaseProps, getClassName } from './BaseComponent';
 
-export interface Props extends BaseProps {
+export interface CodeProps extends BaseProps {
   children: { code: string };
   language?: string;
   escape?: boolean;
@@ -20,7 +20,7 @@ function Code({
   fragmentIndex,
   lineNumbers,
   noTrim,
-}: Props) {
+}: CodeProps) {
   return (
     <pre
       data-id={id}

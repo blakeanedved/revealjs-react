@@ -5,7 +5,7 @@ import Reveal, { Plugin } from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
 import { BackgroundRepeat, TransitionAtoms, TransitionSpeed } from '../types';
 
-export interface Props {
+export interface RevealJSProps {
   children: React.ReactNode;
   plugins?: Plugin[];
 
@@ -374,7 +374,7 @@ function RevealJS({
   // Bounds for smallest/largest possible scale to apply to content
   minScale = 0.2,
   maxScale = 2.0,
-}: Props) {
+}: RevealJSProps) {
   useEffect(() => {
     const deck = new Reveal({
       plugins,

@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { BaseProps } from './BaseComponent';
-export interface Props extends BaseProps {
+export interface CodeProps extends BaseProps {
     children: {
         code: string;
     };
@@ -9,5 +9,5 @@ export interface Props extends BaseProps {
     lineNumbers?: string;
     noTrim?: boolean;
 }
-declare function Code({ id, children, language, className, escape, fragment, fragmentStyle, fragmentIndex, lineNumbers, noTrim, }: Props): JSX.Element;
+declare function Code({ id, children, language, className, escape, fragment, fragmentStyle, fragmentIndex, lineNumbers, noTrim, }: CodeProps): JSX.Element;
 export default Code;

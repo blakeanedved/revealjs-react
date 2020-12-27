@@ -1,7 +1,7 @@
 import React from 'react';
 import { BaseProps, getClassName } from './BaseComponent';
 
-export interface Props extends BaseProps {
+export interface VideoProps extends BaseProps {
   autoplay?: boolean;
   controls?: boolean;
   height?: number;
@@ -55,7 +55,7 @@ function Video({
   preload,
   width,
   src,
-}: Props) {
+}: VideoProps) {
   if (Array.isArray(src)) {
     return (
       <video

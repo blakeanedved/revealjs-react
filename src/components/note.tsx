@@ -1,6 +1,10 @@
 import React from 'react';
 
-function Note({ children }: { children: React.ReactNode }) {
+export interface NoteProps {
+  children: React.ReactNode;
+}
+
+function Note({ children }: NoteProps) {
   return <aside className="notes">{children}</aside>;
 }
 

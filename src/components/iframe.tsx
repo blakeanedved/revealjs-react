@@ -1,7 +1,7 @@
 import React from 'react';
 import { BaseProps, getClassName } from './BaseComponent';
 
-export interface Props extends BaseProps {
+export interface IFrameProps extends BaseProps {
   height?: number;
   lazy?: boolean;
   preload?: string;
@@ -20,7 +20,7 @@ function IFrame({
   preload,
   src,
   width,
-}: Props) {
+}: IFrameProps) {
   return (
     <iframe
       data-id={id}

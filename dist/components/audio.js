@@ -18,14 +18,14 @@ const formatMap = {
     wav: 'audio/wav',
     webm: 'audio/webm',
 };
-function Audio({ id = undefined, autoplay = undefined, className = undefined, controls = undefined, fragment = false, fragmentIndex = undefined, fragmentStyle = undefined, lazy = undefined, loop = undefined, muted = undefined, preload = undefined, src, }) {
-    if (typeof src === 'object') {
+function Audio({ id, autoplay, className, controls, fragment, fragmentIndex, fragmentStyle, lazy, loop, muted, preload, src, }) {
+    if (Array.isArray(src)) {
         return (react_1.default.createElement("audio", { "data-id": id, id: id, className: className +
                 (fragment ? ' fragment' : '') +
-                (fragmentStyle ? ` ${fragmentStyle}` : ''), "data-autoplay": autoplay, controls: controls, muted: muted, loop: loop, "data-fragment-index": fragmentIndex }, src.forEach((element) => (react_1.default.createElement("source", { src: lazy ? false : element, "data-src": lazy ? element : false, "data-preload": preload, type: formatMap[/\.[^.]+$/.exec(element)] })))));
+                (fragmentStyle ? ` ${fragmentStyle}` : ''), "data-autoplay": autoplay, controls: controls, muted: muted, loop: loop, "data-fragment-index": fragmentIndex }, src.map((element) => (react_1.default.createElement("source", { src: lazy ? false : element, "data-src": lazy ? element : false, "data-preload": preload, type: formatMap[/\.[^.]+$/.exec(element)?.[0]] || 'mp3' })))));
     }
     return (react_1.default.createElement("audio", { "data-id": id, id: id, className: className +
             (fragment ? ' fragment' : '') +
-            (fragmentStyle ? ` ${fragmentStyle}` : ''), "data-autoplay": autoplay, src: lazy ? false : src, "data-src": lazy ? src : false, "data-preload": preload, controls: controls, muted: muted, loop: loop, "data-fragment-index": fragmentIndex }));
+            (fragmentStyle ? ` ${fragmentStyle}` : ''), "data-autoplay": autoplay, src: lazy ? '' : src, "data-src": lazy ? src : false, "data-preload": preload, controls: controls, muted: muted, loop: loop, "data-fragment-index": fragmentIndex }));
 }
 exports.default = Audio;

@@ -1,6 +1,23 @@
 import React from 'react';
+import { BaseProps } from './BaseComponent';
 
-const formatMap = {
+export type AudioTypes =
+ | '3gp'
+ | 'aac'
+ | 'flac'
+ | 'mpg'
+ | 'mpeg'
+ | 'mp3'
+ | 'mp4'
+ | 'm4a'
+ | 'oga'
+ | 'ogg'
+ | 'wav'
+ | 'webm';
+
+const formatMap: {
+  [P in AudioTypes]: string;
+} = {
   '3gp': 'audio/3gp',
   aac: 'audio/aac',
   flac: 'audio/flac',
@@ -15,21 +32,31 @@ const formatMap = {
   webm: 'audio/webm',
 };
 
+export interface AudioProps extends BaseProps {
+  autoplay?: boolean;
+  controls?: boolean;
+  lazy?: string;
+  loop?: boolean;
+  muted?: boolean;
+  preload?: boolean;
+  src: string;
+}
+
 function Audio({
-  id = undefined,
-  autoplay = undefined,
-  className = undefined,
-  controls = undefined,
-  fragment = false,
-  fragmentIndex = undefined,
-  fragmentStyle = undefined,
-  lazy = undefined,
-  loop = undefined,
-  muted = undefined,
-  preload = undefined,
+  id,
+  autoplay,
+  className,
+  controls,
+  fragment,
+  fragmentIndex,
+  fragmentStyle,
+  lazy,
+  loop,
+  muted,
+  preload,
   src,
-}) {
-  if (typeof src === 'object') {
+}: AudioProps) {
+  if (Array.isArray(src)) {
     return (
       <audio
         data-id={id}
@@ -45,12 +72,12 @@ function Audio({
         loop={loop}
         data-fragment-index={fragmentIndex}
       >
-        {src.forEach((element) => (
+        {src.map((element) => (
           <source
             src={lazy ? false : element}
             data-src={lazy ? element : false}
             data-preload={preload}
-            type={formatMap[/\.[^.]+$/.exec(element)]}
+            type={formatMap[/\.[^.]+$/.exec(element)?.[0] as AudioTypes] || 'mp3'}
           />
         ))}
       </audio>
@@ -67,7 +94,7 @@ function Audio({
         (fragmentStyle ? ` ${fragmentStyle}` : '')
       }
       data-autoplay={autoplay}
-      src={lazy ? false : src}
+      src={lazy ? '' : src}
       data-src={lazy ? src : false}
       data-preload={preload}
       controls={controls}

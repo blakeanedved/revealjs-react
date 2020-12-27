@@ -2,20 +2,70 @@ import React, { createElement, useEffect } from 'react';
 import Reveal from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
 
-function _typeof(obj) {
-  "@babel/helpers - typeof";
+var formatMap = {
+  '3gp': 'audio/3gp',
+  aac: 'audio/aac',
+  flac: 'audio/flac',
+  mpg: 'audio/mpeg',
+  mpeg: 'audio/mpeg',
+  mp3: 'audio/mp3',
+  mp4: 'audio/mp4',
+  m4a: 'audio/mp4',
+  oga: 'audio/ogg',
+  ogg: 'audio/ogg',
+  wav: 'audio/wav',
+  webm: 'audio/webm'
+};
 
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function (obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
+function Audio(_ref) {
+  var id = _ref.id,
+      autoplay = _ref.autoplay,
+      className = _ref.className,
+      controls = _ref.controls,
+      fragment = _ref.fragment,
+      fragmentIndex = _ref.fragmentIndex,
+      fragmentStyle = _ref.fragmentStyle,
+      lazy = _ref.lazy,
+      loop = _ref.loop,
+      muted = _ref.muted,
+      preload = _ref.preload,
+      src = _ref.src;
+
+  if (Array.isArray(src)) {
+    return /*#__PURE__*/React.createElement("audio", {
+      "data-id": id,
+      id: id,
+      className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
+      "data-autoplay": autoplay,
+      controls: controls,
+      muted: muted,
+      loop: loop,
+      "data-fragment-index": fragmentIndex
+    }, src.map(function (element) {
+      var _$exec;
+
+      return /*#__PURE__*/React.createElement("source", {
+        src: lazy ? false : element,
+        "data-src": lazy ? element : false,
+        "data-preload": preload,
+        type: formatMap[(_$exec = /\.[^.]+$/.exec(element)) === null || _$exec === void 0 ? void 0 : _$exec[0]] || 'mp3'
+      });
+    }));
   }
 
-  return _typeof(obj);
+  return /*#__PURE__*/React.createElement("audio", {
+    "data-id": id,
+    id: id,
+    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
+    "data-autoplay": autoplay,
+    src: lazy ? '' : src,
+    "data-src": lazy ? src : false,
+    "data-preload": preload,
+    controls: controls,
+    muted: muted,
+    loop: loop,
+    "data-fragment-index": fragmentIndex
+  });
 }
 
 function _defineProperty(obj, key, value) {
@@ -65,117 +115,6 @@ function _objectSpread2(target) {
   }
 
   return target;
-}
-
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
-
-function _objectWithoutProperties(source, excluded) {
-  if (source == null) return {};
-
-  var target = _objectWithoutPropertiesLoose(source, excluded);
-
-  var key, i;
-
-  if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
-    }
-  }
-
-  return target;
-}
-
-var formatMap = {
-  '3gp': 'audio/3gp',
-  aac: 'audio/aac',
-  flac: 'audio/flac',
-  mpg: 'audio/mpeg',
-  mpeg: 'audio/mpeg',
-  mp3: 'audio/mp3',
-  mp4: 'audio/mp4',
-  m4a: 'audio/mp4',
-  oga: 'audio/ogg',
-  ogg: 'audio/ogg',
-  wav: 'audio/wav',
-  webm: 'audio/webm'
-};
-
-function Audio(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$autoplay = _ref.autoplay,
-      autoplay = _ref$autoplay === void 0 ? undefined : _ref$autoplay,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$controls = _ref.controls,
-      controls = _ref$controls === void 0 ? undefined : _ref$controls,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? false : _ref$fragment,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$lazy = _ref.lazy,
-      lazy = _ref$lazy === void 0 ? undefined : _ref$lazy,
-      _ref$loop = _ref.loop,
-      loop = _ref$loop === void 0 ? undefined : _ref$loop,
-      _ref$muted = _ref.muted,
-      muted = _ref$muted === void 0 ? undefined : _ref$muted,
-      _ref$preload = _ref.preload,
-      preload = _ref$preload === void 0 ? undefined : _ref$preload,
-      src = _ref.src;
-
-  if (_typeof(src) === 'object') {
-    return /*#__PURE__*/React.createElement("audio", {
-      "data-id": id,
-      id: id,
-      className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-      "data-autoplay": autoplay,
-      controls: controls,
-      muted: muted,
-      loop: loop,
-      "data-fragment-index": fragmentIndex
-    }, src.forEach(function (element) {
-      return /*#__PURE__*/React.createElement("source", {
-        src: lazy ? false : element,
-        "data-src": lazy ? element : false,
-        "data-preload": preload,
-        type: formatMap[/\.[^.]+$/.exec(element)]
-      });
-    }));
-  }
-
-  return /*#__PURE__*/React.createElement("audio", {
-    "data-id": id,
-    id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    "data-autoplay": autoplay,
-    src: lazy ? false : src,
-    "data-src": lazy ? src : false,
-    "data-preload": preload,
-    controls: controls,
-    muted: muted,
-    loop: loop,
-    "data-fragment-index": fragmentIndex
-  });
 }
 
 function getClassName(className, fragment, fragmentStyle) {
@@ -252,31 +191,6 @@ var H3 = generateBaseComponent('h3');
 var H4 = generateBaseComponent('h4');
 var H5 = generateBaseComponent('h5');
 var H6 = generateBaseComponent('h6');
-
-function H(props) {
-  var size = props.size,
-      rest = _objectWithoutProperties(props, ["size"]);
-
-  switch (size) {
-    case 1:
-      return /*#__PURE__*/React.createElement(H1, rest);
-
-    case 2:
-      return /*#__PURE__*/React.createElement(H2, rest);
-
-    case 3:
-      return /*#__PURE__*/React.createElement(H3, rest);
-
-    case 4:
-      return /*#__PURE__*/React.createElement(H4, rest);
-
-    case 5:
-      return /*#__PURE__*/React.createElement(H5, rest);
-
-    case 6:
-      return /*#__PURE__*/React.createElement(H6, rest);
-  }
-}
 
 var header = generateBaseComponent('header');
 
@@ -696,5 +610,5 @@ function Video(_ref) {
   });
 }
 
-export { Audio, blockquote as BlockQuote, Code, div as Div, figcaption as FigCaption, figure as Figure, footer as Footer, H, H1, H2, H3, H4, H5, H6, header as Header, IFrame, Image, li as Li, Link, main as Main, Note, ol as Ol, p as P, RevealJS, Slide, span as Span, ul as Ul, Video };
+export { Audio, blockquote as BlockQuote, Code, div as Div, figcaption as FigCaption, figure as Figure, footer as Footer, H1, H2, H3, H4, H5, H6, header as Header, IFrame, Image, li as Li, Link, main as Main, Note, ol as Ol, p as P, RevealJS, Slide, span as Span, ul as Ul, Video };
 //# sourceMappingURL=index.esm.js.map

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BaseProps, getClassName } from './BaseComponent';
 
-export interface Props extends BaseProps {
+export interface LinkProps extends BaseProps {
   children: React.ReactNode;
   href?: string;
   slide?: string | [string, string];
@@ -16,7 +16,7 @@ function Link({
   fragmentIndex,
   href,
   slide,
-}: Props) {
+}: LinkProps) {
   return (
     <a
       data-id={id}
