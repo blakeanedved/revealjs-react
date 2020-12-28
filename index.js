@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var React = require('react');
 var Reveal = require('reveal.js');
 require('reveal.js/dist/reveal.css');
-var HighlightPlugin = require('reveal.js/plugin/highlight/highlight');
+var HighlightPlugin = require('reveal.js/plugin/highlight/highlight.esm');
 var MathPlugin = require('reveal.js/plugin/math/math.esm');
 var MarkdownPlugin = require('reveal.js/plugin/markdown/markdown');
 var NotesPlugin = require('reveal.js/plugin/notes/notes');

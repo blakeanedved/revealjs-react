@@ -1,3 +1,3 @@
-import NotesPlugin from 'reveal.js/plugin/notes/notes';
+import NotesPlugin from 'reveal.js/plugin/notes/notes.esm';
 
 export default NotesPlugin;

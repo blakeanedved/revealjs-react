@@ -1,7 +1,7 @@
 import React, { createElement, useEffect } from 'react';
 import Reveal from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
-export { default as HighlightPlugin } from 'reveal.js/plugin/highlight/highlight';
+export { default as HighlightPlugin } from 'reveal.js/plugin/highlight/highlight.esm';
 export { default as MathPlugin } from 'reveal.js/plugin/math/math.esm';
 export { default as MarkdownPlugin } from 'reveal.js/plugin/markdown/markdown';
 export { default as NotesPlugin } from 'reveal.js/plugin/notes/notes';
