@@ -1,38 +1,38 @@
-type Navigate = () => void;
-export interface Routes {
+type RevealNavigate = () => void;
+export interface RevealRoutes {
   left: boolean;
   right: boolean;
   top: boolean;
   bottom: boolean;
 }
-export interface SlideCoordinates {
+export interface RevealSlideCoordinates {
   h: number;
   v: number;
   f: number;
 }
-export interface SlideSize {
+export interface RevealSlideSize {
   presentationWidth: number;
   presentationHeight: number;
 }
 export default class Reveal {
-  constructor(config: Config);
+  constructor(config: RevealConfig);
   slide: (indexh: number, indexv?: number, indexh?: number) => void;
-  left: Navigate;
-  right: Navigate;
-  up: Navigate;
-  down: Navigate;
-  prev: Navigate;
-  next: Navigate;
-  prevFragment: Navigate;
-  nextFragment: Navigate;
-  availableRoutes: () => Routes;
+  left: RevealNavigate;
+  right: RevealNavigate;
+  up: RevealNavigate;
+  down: RevealNavigate;
+  prev: RevealNavigate;
+  next: RevealNavigate;
+  prevFragment: RevealNavigate;
+  nextFragment: RevealNavigate;
+  availableRoutes: () => RevealRoutes;
   sync: () => void;
   layout: () => void;
   shuffle: () => void;
-  getConfig: () => Config;
+  getConfig: () => RevealConfig;
   getScale: () => number;
-  getComputedSlideSize: () => SlideSize;
-  getIndices: (slide?: HTMLElement) => SlideCoordinates;
+  getComputedSlideSize: () => RevealSlideSize;
+  getIndices: (slide?: HTMLElement) => RevealSlideCoordinates;
   getProgress: () => number;
   getSlideNotes: (slide?: HTMLElement) => string | null;
   getPreviousSlide: () => HTMLElement;
@@ -61,18 +61,18 @@ export default class Reveal {
   getViewportElement: () => HTMLElement;
   initialize(options?: Partial<Options>);
   hasPlugin(string): boolean;
-  getPlugin(string): Plugin | null;
-  getPlugins(): PluginList;
+  getPlugin(string): RevealPlugin | null;
+  getPlugins(): RevealPluginList;
 }
-export interface Plugin {
+export interface RevealPlugin {
   id: string;
   init: (reveal: Reveal) => void | Promise<void>;
 }
-export interface PluginList {
-  [pluginName: string]: Plugin;
+export interface RevealPluginList {
+  [pluginName: string]: RevealPlugin;
 }
-export interface Config {
-  plugins?: Plugin[];
+export interface RevealConfig {
+  plugins?: RevealPlugin[];
 
   controls?: boolean;
   controlsTutorial?: boolean;

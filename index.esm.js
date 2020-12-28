@@ -1,6 +1,12 @@
 import React, { createElement, useEffect } from 'react';
 import Reveal from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
+export { default as HighlightPlugin } from 'reveal.js/plugin/highlight/highlight';
+export { default as MathPlugin } from 'reveal.js/plugin/math/math.esm';
+export { default as MarkdownPlugin } from 'reveal.js/plugin/markdown/markdown';
+export { default as NotesPlugin } from 'reveal.js/plugin/notes/notes';
+export { default as SearchPlugin } from 'reveal.js/plugin/search/search';
+export { default as ZoomPlugin } from 'reveal.js/plugin/zoom/zoom';
 
 var formatMap = {
   '3gp': 'audio/3gp',

@@ -5,11 +5,23 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var React = require('react');
 var Reveal = require('reveal.js');
 require('reveal.js/dist/reveal.css');
+var HighlightPlugin = require('reveal.js/plugin/highlight/highlight');
+var MathPlugin = require('reveal.js/plugin/math/math.esm');
+var MarkdownPlugin = require('reveal.js/plugin/markdown/markdown');
+var NotesPlugin = require('reveal.js/plugin/notes/notes');
+var SearchPlugin = require('reveal.js/plugin/search/search');
+var ZoomPlugin = require('reveal.js/plugin/zoom/zoom');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 var Reveal__default = /*#__PURE__*/_interopDefaultLegacy(Reveal);
+var HighlightPlugin__default = /*#__PURE__*/_interopDefaultLegacy(HighlightPlugin);
+var MathPlugin__default = /*#__PURE__*/_interopDefaultLegacy(MathPlugin);
+var MarkdownPlugin__default = /*#__PURE__*/_interopDefaultLegacy(MarkdownPlugin);
+var NotesPlugin__default = /*#__PURE__*/_interopDefaultLegacy(NotesPlugin);
+var SearchPlugin__default = /*#__PURE__*/_interopDefaultLegacy(SearchPlugin);
+var ZoomPlugin__default = /*#__PURE__*/_interopDefaultLegacy(ZoomPlugin);
 
 var formatMap = {
   '3gp': 'audio/3gp',
@@ -619,6 +631,42 @@ function Video(_ref) {
   });
 }
 
+Object.defineProperty(exports, 'HighlightPlugin', {
+  enumerable: true,
+  get: function () {
+    return HighlightPlugin__default['default'];
+  }
+});
+Object.defineProperty(exports, 'MathPlugin', {
+  enumerable: true,
+  get: function () {
+    return MathPlugin__default['default'];
+  }
+});
+Object.defineProperty(exports, 'MarkdownPlugin', {
+  enumerable: true,
+  get: function () {
+    return MarkdownPlugin__default['default'];
+  }
+});
+Object.defineProperty(exports, 'NotesPlugin', {
+  enumerable: true,
+  get: function () {
+    return NotesPlugin__default['default'];
+  }
+});
+Object.defineProperty(exports, 'SearchPlugin', {
+  enumerable: true,
+  get: function () {
+    return SearchPlugin__default['default'];
+  }
+});
+Object.defineProperty(exports, 'ZoomPlugin', {
+  enumerable: true,
+  get: function () {
+    return ZoomPlugin__default['default'];
+  }
+});
 exports.Audio = Audio;
 exports.BlockQuote = blockquote;
 exports.Code = Code;

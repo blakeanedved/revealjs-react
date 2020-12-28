@@ -49,6 +49,26 @@ import type { UlProps } from './components/ul';
 import Video from './components/video';
 import type { VideoProps } from './components/video';
 
+// plugins
+import HighlightPlugin from "./plugins/highlight";
+import MathPlugin from "./plugins/math";
+import MarkdownPlugin from "./plugins/markdown";
+import NotesPlugin from "./plugins/notes";
+import SearchPlugin from "./plugins/search";
+import ZoomPlugin from "./plugins/zoom";
+
+// types for reveal.js
+import type {
+  RevealPlugin,
+  RevealPluginList,
+  RevealConfig,
+  RevealNavigate,
+  RevealRoutes,
+  RevealSlideCoordinates,
+  RevealSlideSize
+} from "reveal.js";
+import type Reveal from "reveal.js";
+
 export {
   Audio,
   BlockQuote,
@@ -77,9 +97,23 @@ export {
   Span,
   Ul,
   Video,
+  HighlightPlugin,
+  MathPlugin,
+  MarkdownPlugin,
+  SearchPlugin,
+  ZoomPlugin,
+  NotesPlugin,
 };
 
 export type {
+  RevealPlugin,
+  RevealPluginList,
+  Reveal,
+  RevealConfig,
+  RevealNavigate,
+  RevealRoutes,
+  RevealSlideCoordinates,
+  RevealSlideSize,
   AudioProps,
   BlockQuoteProps,
   CodeProps,

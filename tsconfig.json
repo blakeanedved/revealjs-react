@@ -70,9 +70,6 @@
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
   "include": [
-    "src"
-  ],
-  "exclude": [
-    "types"
+    "src", "types"
   ]
 }

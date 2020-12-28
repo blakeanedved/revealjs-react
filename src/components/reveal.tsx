@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
-import Reveal, { Plugin } from 'reveal.js';
+import Reveal, { RevealPlugin } from 'reveal.js';
 
 // Styles
 import 'reveal.js/dist/reveal.css';
 import { BackgroundRepeat, TransitionAtoms, TransitionSpeed } from '../types';
-
 export interface RevealJSProps {
   children: React.ReactNode;
-  plugins?: Plugin[];
+  plugins?: RevealPlugin[];
 
   controls?: boolean;
   controlsTutorial?: boolean;
@@ -88,7 +87,7 @@ export interface RevealJSProps {
   maxScale?: number;
 }
 
-function RevealJS({
+export default function RevealJS({
   children,
 
   plugins = [],
@@ -524,5 +523,3 @@ function RevealJS({
     </div>
   );
 }
-
-export default RevealJS;
