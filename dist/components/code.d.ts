@@ -9,5 +9,5 @@ export interface CodeProps extends BaseProps {
     lineNumbers?: string;
     noTrim?: boolean;
 }
-declare function Code({ id, children, language, className, escape, fragment, fragmentStyle, fragmentIndex, lineNumbers, noTrim, }: CodeProps): JSX.Element;
+declare function Code({ id, children, language, escape, fragmentIndex, lineNumbers, noTrim, ...props }: CodeProps): JSX.Element;
 export default Code;

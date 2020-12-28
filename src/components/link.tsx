@@ -10,12 +10,10 @@ export interface LinkProps extends BaseProps {
 function Link({
   id,
   children,
-  className,
-  fragment,
-  fragmentStyle,
   fragmentIndex,
   href,
   slide,
+  ...props
 }: LinkProps) {
   return (
     <a
@@ -30,7 +28,7 @@ function Link({
               : `${parseInt(slide[0], 10) - 1}/${parseInt(slide[1], 10) - 1}`
           }`)
       }
-      className={getClassName(className, fragment, fragmentStyle)}
+      className={getClassName(props)}
       data-fragment-index={fragmentIndex}
     >
       {children}

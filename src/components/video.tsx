@@ -43,10 +43,7 @@ const formatMap: {
 function Video({
   id,
   autoplay,
-  className,
   controls,
-  fragment,
-  fragmentStyle,
   fragmentIndex,
   height,
   lazy,
@@ -55,13 +52,14 @@ function Video({
   preload,
   width,
   src,
+  ...props
 }: VideoProps) {
   if (Array.isArray(src)) {
     return (
       <video
         data-id={id}
         id={id}
-        className={getClassName(className, fragment, fragmentStyle)}
+        className={getClassName(props)}
         data-autoplay={autoplay}
         controls={controls}
         muted={muted}
@@ -88,11 +86,7 @@ function Video({
     <video
       data-id={id}
       id={id}
-      className={
-        className +
-        (fragment ? ' fragment' : '') +
-        (fragmentStyle ? ` ${fragmentStyle}` : '')
-      }
+      className={getClassName(props)}
       data-autoplay={autoplay}
       src={lazy ? '' : src}
       data-src={lazy ? src : false}

@@ -13,20 +13,18 @@ function Code({
   id,
   children,
   language,
-  className,
   escape,
-  fragment,
-  fragmentStyle,
   fragmentIndex,
   lineNumbers,
   noTrim,
+  ...props
 }: CodeProps) {
   return (
     <pre
       data-id={id}
       id={id}
       data-fragment-index={fragmentIndex}
-      className={getClassName(className, fragment, fragmentStyle)}
+      className={getClassName(props)}
     >
       <code
         className={language}

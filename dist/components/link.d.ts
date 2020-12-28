@@ -5,5 +5,5 @@ export interface LinkProps extends BaseProps {
     href?: string;
     slide?: string | [string, string];
 }
-declare function Link({ id, children, className, fragment, fragmentStyle, fragmentIndex, href, slide, }: LinkProps): JSX.Element;
+declare function Link({ id, children, fragmentIndex, href, slide, ...props }: LinkProps): JSX.Element;
 export default Link;

@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const BaseComponent_1 = require("./BaseComponent");
-function IFrame({ id, className, fragment, fragmentStyle, fragmentIndex, height, lazy, preload, src, width, }) {
-    return (react_1.default.createElement("iframe", { "data-id": id, id: id, className: BaseComponent_1.getClassName(className, fragment, fragmentStyle), src: lazy ? undefined : src, "data-src": lazy ? src : false, "data-preload": preload, width: width, height: height, "data-fragment-index": fragmentIndex }));
+function IFrame({ id, fragmentIndex, height, lazy, preload, src, width, ...props }) {
+    return (react_1.default.createElement("iframe", { "data-id": id, id: id, className: BaseComponent_1.getClassName(props), src: lazy ? undefined : src, "data-src": lazy ? src : false, "data-preload": preload, width: width, height: height, "data-fragment-index": fragmentIndex }));
 }
 exports.default = IFrame;

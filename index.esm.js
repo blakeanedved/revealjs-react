@@ -3,10 +3,10 @@ import Reveal from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
 export { default as HighlightPlugin } from 'reveal.js/plugin/highlight/highlight.esm';
 export { default as MathPlugin } from 'reveal.js/plugin/math/math.esm';
-export { default as MarkdownPlugin } from 'reveal.js/plugin/markdown/markdown';
-export { default as NotesPlugin } from 'reveal.js/plugin/notes/notes';
-export { default as SearchPlugin } from 'reveal.js/plugin/search/search';
-export { default as ZoomPlugin } from 'reveal.js/plugin/zoom/zoom';
+export { default as MarkdownPlugin } from 'reveal.js/plugin/markdown/markdown.esm';
+export { default as NotesPlugin } from 'reveal.js/plugin/notes/notes.esm';
+export { default as SearchPlugin } from 'reveal.js/plugin/search/search.esm';
+export { default as ZoomPlugin } from 'reveal.js/plugin/zoom/zoom.esm';
 
 var formatMap = {
   '3gp': 'audio/3gp',
@@ -123,9 +123,50 @@ function _objectSpread2(target) {
   return target;
 }
 
-function getClassName(className, fragment, fragmentStyle) {
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+function getClassName(baseProps) {
+  var className = baseProps.className,
+      fragment = baseProps.fragment,
+      fragmentStyle = baseProps.fragmentStyle,
+      fitText = baseProps.fitText;
   var classes = className ? [className] : [];
   if (fragment) classes.push("fragment");
+  if (fitText) classes.push("r-fit-text");
   if (fragmentStyle) classes.push(fragmentStyle);
   if (!classes.length) return undefined;
   return classes.join(' ');
@@ -143,15 +184,14 @@ function generateBaseComponent(component) {
 function BaseComponent(_ref) {
   var component = _ref.component,
       id = _ref.id,
-      className = _ref.className,
-      fragment = _ref.fragment,
-      fragmentStyle = _ref.fragmentStyle,
       fragmentIndex = _ref.fragmentIndex,
-      children = _ref.children;
+      children = _ref.children,
+      props = _objectWithoutProperties(_ref, ["component", "id", "fragmentIndex", "children"]);
+
   return /*#__PURE__*/createElement(component, {
     'data-id': id,
     id: id,
-    className: getClassName(className, fragment, fragmentStyle),
+    className: getClassName(props),
     'data-fragment-index': fragmentIndex,
     children: children
   });
@@ -163,18 +203,17 @@ function Code(_ref) {
   var id = _ref.id,
       children = _ref.children,
       language = _ref.language,
-      className = _ref.className,
       escape = _ref.escape,
-      fragment = _ref.fragment,
-      fragmentStyle = _ref.fragmentStyle,
       fragmentIndex = _ref.fragmentIndex,
       lineNumbers = _ref.lineNumbers,
-      noTrim = _ref.noTrim;
+      noTrim = _ref.noTrim,
+      props = _objectWithoutProperties(_ref, ["id", "children", "language", "escape", "fragmentIndex", "lineNumbers", "noTrim"]);
+
   return /*#__PURE__*/React.createElement("pre", {
     "data-id": id,
     id: id,
     "data-fragment-index": fragmentIndex,
-    className: getClassName(className, fragment, fragmentStyle)
+    className: getClassName(props)
   }, /*#__PURE__*/React.createElement("code", {
     className: language,
     "data-noescape": !escape,
@@ -202,19 +241,18 @@ var header = generateBaseComponent('header');
 
 function IFrame(_ref) {
   var id = _ref.id,
-      className = _ref.className,
-      fragment = _ref.fragment,
-      fragmentStyle = _ref.fragmentStyle,
       fragmentIndex = _ref.fragmentIndex,
       height = _ref.height,
       lazy = _ref.lazy,
       preload = _ref.preload,
       src = _ref.src,
-      width = _ref.width;
+      width = _ref.width,
+      props = _objectWithoutProperties(_ref, ["id", "fragmentIndex", "height", "lazy", "preload", "src", "width"]);
+
   return /*#__PURE__*/React.createElement("iframe", {
     "data-id": id,
     id: id,
-    className: getClassName(className, fragment, fragmentStyle),
+    className: getClassName(props),
     src: lazy ? undefined : src,
     "data-src": lazy ? src : false,
     "data-preload": preload,
@@ -225,27 +263,18 @@ function IFrame(_ref) {
 }
 
 function Image(_ref) {
-  var _ref$id = _ref.id,
-      id = _ref$id === void 0 ? undefined : _ref$id,
-      _ref$alt = _ref.alt,
-      alt = _ref$alt === void 0 ? undefined : _ref$alt,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? undefined : _ref$className,
-      _ref$fragment = _ref.fragment,
-      fragment = _ref$fragment === void 0 ? undefined : _ref$fragment,
-      _ref$fragmentStyle = _ref.fragmentStyle,
-      fragmentStyle = _ref$fragmentStyle === void 0 ? undefined : _ref$fragmentStyle,
-      _ref$fragmentIndex = _ref.fragmentIndex,
-      fragmentIndex = _ref$fragmentIndex === void 0 ? undefined : _ref$fragmentIndex,
-      _ref$height = _ref.height,
-      height = _ref$height === void 0 ? undefined : _ref$height,
+  var id = _ref.id,
+      alt = _ref.alt,
+      fragmentIndex = _ref.fragmentIndex,
+      height = _ref.height,
       src = _ref.src,
-      _ref$width = _ref.width,
-      width = _ref$width === void 0 ? undefined : _ref$width;
+      width = _ref.width,
+      props = _objectWithoutProperties(_ref, ["id", "alt", "fragmentIndex", "height", "src", "width"]);
+
   return /*#__PURE__*/React.createElement("img", {
     "data-id": id,
     id: id,
-    className: getClassName(className, fragment, fragmentStyle),
+    className: getClassName(props),
     src: src,
     alt: alt,
     width: width,
@@ -259,17 +288,16 @@ var li = generateBaseComponent('li');
 function Link(_ref) {
   var id = _ref.id,
       children = _ref.children,
-      className = _ref.className,
-      fragment = _ref.fragment,
-      fragmentStyle = _ref.fragmentStyle,
       fragmentIndex = _ref.fragmentIndex,
       href = _ref.href,
-      slide = _ref.slide;
+      slide = _ref.slide,
+      props = _objectWithoutProperties(_ref, ["id", "children", "fragmentIndex", "href", "slide"]);
+
   return /*#__PURE__*/React.createElement("a", {
     "data-id": id,
     id: id,
     href: href || slide && "#/".concat(typeof slide === 'string' ? parseInt(slide, 10) - 1 : "".concat(parseInt(slide[0], 10) - 1, "/").concat(parseInt(slide[1], 10) - 1)),
-    className: getClassName(className, fragment, fragmentStyle),
+    className: getClassName(props),
     "data-fragment-index": fragmentIndex
   }, children);
 }
@@ -562,10 +590,7 @@ var formatMap$1 = {
 function Video(_ref) {
   var id = _ref.id,
       autoplay = _ref.autoplay,
-      className = _ref.className,
       controls = _ref.controls,
-      fragment = _ref.fragment,
-      fragmentStyle = _ref.fragmentStyle,
       fragmentIndex = _ref.fragmentIndex,
       height = _ref.height,
       lazy = _ref.lazy,
@@ -573,13 +598,14 @@ function Video(_ref) {
       muted = _ref.muted,
       preload = _ref.preload,
       width = _ref.width,
-      src = _ref.src;
+      src = _ref.src,
+      props = _objectWithoutProperties(_ref, ["id", "autoplay", "controls", "fragmentIndex", "height", "lazy", "loop", "muted", "preload", "width", "src"]);
 
   if (Array.isArray(src)) {
     return /*#__PURE__*/React.createElement("video", {
       "data-id": id,
       id: id,
-      className: getClassName(className, fragment, fragmentStyle),
+      className: getClassName(props),
       "data-autoplay": autoplay,
       controls: controls,
       muted: muted,
@@ -602,7 +628,7 @@ function Video(_ref) {
   return /*#__PURE__*/React.createElement("video", {
     "data-id": id,
     id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
+    className: getClassName(props),
     "data-autoplay": autoplay,
     src: lazy ? '' : src,
     "data-src": lazy ? src : false,

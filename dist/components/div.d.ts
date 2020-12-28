@@ -2,7 +2,7 @@
 import { Props as BaseProps } from "./BaseComponent";
 export declare type DivProps = Exclude<BaseProps, "component">;
 declare const _default: {
-    (props: Pick<BaseProps, "className" | "fragment" | "fragmentStyle" | "children" | "id" | "fragmentIndex">): import("react").DetailedReactHTMLElement<{
+    (props: Pick<BaseProps, "className" | "fragment" | "fragmentStyle" | "fitText" | "children" | "id" | "fragmentIndex">): import("react").DetailedReactHTMLElement<{
         'data-id': string | undefined;
         id: string | undefined;
         className: string | undefined;

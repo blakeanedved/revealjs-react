@@ -7,5 +7,5 @@ export interface IFrameProps extends BaseProps {
     src: string;
     width?: number;
 }
-declare function IFrame({ id, className, fragment, fragmentStyle, fragmentIndex, height, lazy, preload, src, width, }: IFrameProps): JSX.Element;
+declare function IFrame({ id, fragmentIndex, height, lazy, preload, src, width, ...props }: IFrameProps): JSX.Element;
 export default IFrame;

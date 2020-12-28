@@ -6,5 +6,5 @@ export interface ImageProps extends BaseProps {
     width?: number;
     src: string;
 }
-declare function Image({ id, alt, className, fragment, fragmentStyle, fragmentIndex, height, src, width, }: ImageProps): JSX.Element;
+declare function Image({ id, alt, fragmentIndex, height, src, width, ...props }: ImageProps): JSX.Element;
 export default Image;

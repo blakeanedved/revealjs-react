@@ -9,21 +9,19 @@ export interface ImageProps extends BaseProps {
 }
 
 function Image({
-  id = undefined,
-  alt = undefined,
-  className = undefined,
-  fragment = undefined,
-  fragmentStyle = undefined,
-  fragmentIndex = undefined,
-  height = undefined,
+  id,
+  alt,
+  fragmentIndex,
+  height,
   src,
-  width = undefined,
+  width,
+  ...props
 }: ImageProps) {
   return (
     <img
       data-id={id}
       id={id}
-      className={getClassName(className, fragment, fragmentStyle)}
+      className={getClassName(props)}
       src={src}
       alt={alt}
       width={width}

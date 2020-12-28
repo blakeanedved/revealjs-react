@@ -6,6 +6,7 @@ export interface BaseProps {
   fragment?: boolean;
   fragmentStyle?: string;
   fragmentIndex?: number;
+  fitText?: boolean;
 }
 
 export type SimpleComponent =
@@ -33,12 +34,12 @@ export interface Props extends BaseProps {
 }
 
 export function getClassName(
-  className: BaseProps["className"],
-  fragment: BaseProps["fragment"],
-  fragmentStyle: BaseProps["fragmentStyle"],
+  baseProps: BaseProps
 ) {
+  const { className, fragment, fragmentStyle, fitText } = baseProps;
   const classes = className ? [className] : [];
   if (fragment) classes.push("fragment");
+  if (fitText) classes.push("r-fit-text");
   if (fragmentStyle) classes.push(fragmentStyle);
   if (!classes.length) return undefined;
   return classes.join(' ');
@@ -54,16 +55,14 @@ export function generateBaseComponent(component: SimpleComponent) {
 export default function BaseComponent({
   component,
   id,
-  className,
-  fragment,
-  fragmentStyle,
   fragmentIndex,
   children,
+  ...props
 }: Props) {
   return createElement(component, {
     'data-id': id,
     id,
-    className: getClassName(className, fragment, fragmentStyle),
+    className: getClassName(props),
     'data-fragment-index': fragmentIndex,
     children,
   });

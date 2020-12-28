@@ -11,21 +11,19 @@ export interface IFrameProps extends BaseProps {
 
 function IFrame({
   id,
-  className,
-  fragment,
-  fragmentStyle,
   fragmentIndex,
   height,
   lazy,
   preload,
   src,
   width,
+  ...props
 }: IFrameProps) {
   return (
     <iframe
       data-id={id}
       id={id}
-      className={getClassName(className, fragment, fragmentStyle)}
+      className={getClassName(props)}
       src={lazy ? undefined : src}
       data-src={lazy ? src : false}
       data-preload={preload}

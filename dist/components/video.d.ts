@@ -11,5 +11,5 @@ export interface VideoProps extends BaseProps {
     width?: number;
     src: string[] | string;
 }
-declare function Video({ id, autoplay, className, controls, fragment, fragmentStyle, fragmentIndex, height, lazy, loop, muted, preload, width, src, }: VideoProps): JSX.Element;
+declare function Video({ id, autoplay, controls, fragmentIndex, height, lazy, loop, muted, preload, width, src, ...props }: VideoProps): JSX.Element;
 export default Video;
