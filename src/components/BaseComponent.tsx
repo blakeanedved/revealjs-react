@@ -10,10 +10,10 @@ export interface BaseProps {
 }
 
 export type MakeProps<Interface, T extends keyof ReactHTML> = Interface & BaseProps & SimpleComponentProps<T>[0] & {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 export type MakeFullProps<T extends keyof ReactHTML> = BaseProps & SimpleComponentProps<T>[0] & {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export type SimpleComponent =

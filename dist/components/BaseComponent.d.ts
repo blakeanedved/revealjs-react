@@ -8,10 +8,10 @@ export interface BaseProps {
     fitText?: boolean;
 }
 export declare type MakeProps<Interface, T extends keyof ReactHTML> = Interface & BaseProps & SimpleComponentProps<T>[0] & {
-    children: React.ReactNode;
+    children?: React.ReactNode;
 };
 export declare type MakeFullProps<T extends keyof ReactHTML> = BaseProps & SimpleComponentProps<T>[0] & {
-    children: React.ReactNode;
+    children?: React.ReactNode;
 };
 export declare type SimpleComponent = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote' | 'div' | 'figcaption' | 'figure' | 'footer' | 'header' | 'li' | 'main' | 'ol' | 'p' | 'span' | 'ul';
 export declare type SimpleComponentProps<T extends keyof ReactHTML> = ReactHTML[T] extends DetailedHTMLFactory<infer Attributes, any> ? [Attributes, Element] : never;
