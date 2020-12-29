@@ -5,8 +5,9 @@ export interface CodeProps {
   children: { code: string };
   language?: string;
   escape?: boolean;
-  lineNumbers?: string;
+  lineNumbers?: string | true;
   noTrim?: boolean;
+  autoAnimateId?: string;
 }
 
 function Code({
@@ -17,12 +18,13 @@ function Code({
   fragmentIndex,
   lineNumbers,
   noTrim,
+  autoAnimateId,
   ...props
 }: MakeProps<CodeProps, 'pre'>) {
   return (
     <pre
       {...getClassNameProps(props)}
-      data-id={id}
+      data-id={autoAnimateId || id}
       id={id}
       data-fragment-index={fragmentIndex}
     >
@@ -30,7 +32,7 @@ function Code({
         className={language}
         data-noescape={!escape}
         data-trim={!noTrim}
-        data-line-numbers={lineNumbers}
+        data-line-numbers={autoAnimateId ? lineNumbers || true :lineNumbers}
       >
         {children.code}
       </code>

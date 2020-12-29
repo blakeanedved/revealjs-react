@@ -13,7 +13,6 @@ export declare type SimpleComponent = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 
 export declare type SimpleComponentProps<T extends keyof ReactHTML> = ReactHTML[T] extends DetailedHTMLFactory<infer Attributes, any> ? [Attributes, Element] : never;
 export interface RevealProps {
     component: SimpleComponent;
-    children: React.ReactNode;
 }
 export declare type Props<T extends keyof ReactHTML> = MakeProps<RevealProps, T>;
 export declare function getClassNameProps(baseProps: BaseProps): {
@@ -25,7 +24,7 @@ export declare function getClassNameProps(baseProps: BaseProps): {
     fragmentIndex?: number | undefined;
 };
 export declare function generateBaseComponent<T extends SimpleComponent>(component: T): {
-    (props: Omit<Props<T>, 'component'>): import("react").DetailedReactHTMLElement<{
+    (props: MakeFullProps<T>): import("react").DetailedReactHTMLElement<{
         'data-id': string | undefined;
         id: string | undefined;
         'data-fragment-index': number | undefined;

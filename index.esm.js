@@ -152,6 +152,45 @@ function BaseComponent(_ref) {
   }));
 }
 
+var componentsToGenerate = {
+  h1: generateBaseComponent('h1'),
+  h2: generateBaseComponent('h2'),
+  h3: generateBaseComponent('h3'),
+  h4: generateBaseComponent('h4'),
+  h5: generateBaseComponent('h5'),
+  h6: generateBaseComponent('h6'),
+  blockquote: generateBaseComponent('blockquote'),
+  div: generateBaseComponent('div'),
+  figcaption: generateBaseComponent('figcaption'),
+  figure: generateBaseComponent('figure'),
+  footer: generateBaseComponent('footer'),
+  header: generateBaseComponent('header'),
+  li: generateBaseComponent('li'),
+  main: generateBaseComponent('main'),
+  ol: generateBaseComponent('ol'),
+  p: generateBaseComponent('p'),
+  span: generateBaseComponent('span'),
+  ul: generateBaseComponent('ul')
+};
+var H1 = componentsToGenerate.h1;
+var H2 = componentsToGenerate.h2;
+var H3 = componentsToGenerate.h3;
+var H4 = componentsToGenerate.h4;
+var H5 = componentsToGenerate.h5;
+var H6 = componentsToGenerate.h6;
+var BlockQuote = componentsToGenerate.blockquote;
+var Div = componentsToGenerate.div;
+var FigCaption = componentsToGenerate.figcaption;
+var Figure = componentsToGenerate.figure;
+var Footer = componentsToGenerate.footer;
+var Header = componentsToGenerate.header;
+var Li = componentsToGenerate.li;
+var Main = componentsToGenerate.main;
+var Ol = componentsToGenerate.ol;
+var P = componentsToGenerate.p;
+var Span = componentsToGenerate.span;
+var Ul = componentsToGenerate.ul;
+
 var formatMap = {
   '3gp': 'audio/3gp',
   aac: 'audio/aac',
@@ -217,8 +256,6 @@ function Audio(_ref) {
   }));
 }
 
-var blockquote = generateBaseComponent('blockquote');
-
 function Code(_ref) {
   var id = _ref.id,
       children = _ref.children,
@@ -227,36 +264,20 @@ function Code(_ref) {
       fragmentIndex = _ref.fragmentIndex,
       lineNumbers = _ref.lineNumbers,
       noTrim = _ref.noTrim,
-      props = _objectWithoutProperties(_ref, ["id", "children", "language", "escape", "fragmentIndex", "lineNumbers", "noTrim"]);
+      autoAnimateId = _ref.autoAnimateId,
+      props = _objectWithoutProperties(_ref, ["id", "children", "language", "escape", "fragmentIndex", "lineNumbers", "noTrim", "autoAnimateId"]);
 
   return /*#__PURE__*/React.createElement("pre", _extends({}, getClassNameProps(props), {
-    "data-id": id,
+    "data-id": autoAnimateId || id,
     id: id,
     "data-fragment-index": fragmentIndex
   }), /*#__PURE__*/React.createElement("code", {
     className: language,
     "data-noescape": !escape,
     "data-trim": !noTrim,
-    "data-line-numbers": lineNumbers
+    "data-line-numbers": autoAnimateId ? lineNumbers || true : lineNumbers
   }, children.code));
 }
-
-var div = generateBaseComponent('div');
-
-var figcaption = generateBaseComponent('figcaption');
-
-var figure = generateBaseComponent('figure');
-
-var footer = generateBaseComponent('footer');
-
-var H1 = generateBaseComponent('h1');
-var H2 = generateBaseComponent('h2');
-var H3 = generateBaseComponent('h3');
-var H4 = generateBaseComponent('h4');
-var H5 = generateBaseComponent('h5');
-var H6 = generateBaseComponent('h6');
-
-var header = generateBaseComponent('header');
 
 function IFrame(_ref) {
   var id = _ref.id,
@@ -300,8 +321,6 @@ function Image(_ref) {
   }));
 }
 
-var li = generateBaseComponent('li');
-
 function Link(_ref) {
   var id = _ref.id,
       children = _ref.children,
@@ -318,17 +337,11 @@ function Link(_ref) {
   }), children);
 }
 
-var main = generateBaseComponent('main');
-
 function Note(props) {
   return /*#__PURE__*/React.createElement("aside", _extends({}, props, {
     className: "notes"
   }));
 }
-
-var ol = generateBaseComponent('ol');
-
-var p = generateBaseComponent('p');
 
 function RevealJS(_ref) {
   var children = _ref.children,
@@ -548,6 +561,7 @@ function RevealJS(_ref) {
 function Slide(_ref) {
   var autoslide = _ref.autoslide,
       autoAnimate = _ref.autoAnimate,
+      autoAnimateUnmatched = _ref.autoAnimateUnmatched,
       backgroundColor = _ref.backgroundColor,
       backgroundImage = _ref.backgroundImage,
       backgroundSize = _ref.backgroundSize,
@@ -568,6 +582,7 @@ function Slide(_ref) {
     "data-autoslide": autoslide,
     id: id,
     "data-auto-animate": autoAnimate,
+    "data-auto-animate-unmatched": autoAnimateUnmatched,
     "data-visibility": visibility,
     "data-background-color": backgroundColor,
     "data-background-image": backgroundImage,
@@ -584,10 +599,6 @@ function Slide(_ref) {
     "data-transition-speed": transitionSpeed
   }, children);
 }
-
-var span = generateBaseComponent('span');
-
-var ul = generateBaseComponent('ul');
 
 var formatMap$1 = {
   '3gp': 'video/3gpp',
@@ -655,5 +666,5 @@ function Video(_ref) {
   }));
 }
 
-export { Audio, blockquote as BlockQuote, Code, div as Div, figcaption as FigCaption, figure as Figure, footer as Footer, H1, H2, H3, H4, H5, H6, header as Header, IFrame, Image, li as Li, Link, main as Main, Note, ol as Ol, p as P, RevealJS, Slide, span as Span, ul as Ul, Video };
+export { Audio, BlockQuote, Code, Div, FigCaption, Figure, Footer, H1, H2, H3, H4, H5, H6, Header, IFrame, Image, Li, Link, Main, Note, Ol, P, RevealJS, Slide, Span, Ul, Video };
 //# sourceMappingURL=index.esm.js.map

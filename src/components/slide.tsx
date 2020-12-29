@@ -4,6 +4,7 @@ import { Transitions, TransitionSpeed } from '../types';
 export interface SlideProps {
   autoslide?: true;
   autoAnimate?: true;
+  autoAnimateUnmatched?: boolean;
   backgroundColor?: string;
   backgroundImage?: string;
   backgroundSize?: string;
@@ -25,6 +26,7 @@ export interface SlideProps {
 function Slide({
   autoslide,
   autoAnimate,
+  autoAnimateUnmatched,
   backgroundColor,
   backgroundImage,
   backgroundSize,
@@ -47,6 +49,7 @@ function Slide({
       data-autoslide={autoslide}
       id={id}
       data-auto-animate={autoAnimate}
+      data-auto-animate-unmatched={autoAnimateUnmatched}
       data-visibility={visibility}
       data-background-color={backgroundColor}
       data-background-image={backgroundImage}

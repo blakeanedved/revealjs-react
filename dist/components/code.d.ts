@@ -6,8 +6,9 @@ export interface CodeProps {
     };
     language?: string;
     escape?: boolean;
-    lineNumbers?: string;
+    lineNumbers?: string | true;
     noTrim?: boolean;
+    autoAnimateId?: string;
 }
-declare function Code({ id, children, language, escape, fragmentIndex, lineNumbers, noTrim, ...props }: MakeProps<CodeProps, 'pre'>): JSX.Element;
+declare function Code({ id, children, language, escape, fragmentIndex, lineNumbers, noTrim, autoAnimateId, ...props }: MakeProps<CodeProps, 'pre'>): JSX.Element;
 export default Code;

@@ -39,7 +39,6 @@ export type SimpleComponentProps<T extends keyof ReactHTML> =
 
 export interface RevealProps {
   component: SimpleComponent;
-  children: React.ReactNode;
 }
 
 export type Props<T extends keyof ReactHTML> = MakeProps<RevealProps, T>;
@@ -60,8 +59,8 @@ export function getClassNameProps(
 }
 
 export function generateBaseComponent<T extends SimpleComponent>(component: T) {
-  const Component = (props: Omit<Props<T>, 'component'>) =>
-    BaseComponent({ ...props, component });
+  const Component = (props: MakeFullProps<T>) =>
+    BaseComponent<T>({ ...props, component });
   Component.displayName = `${component[0].toUpperCase()}${component.slice(1)}`;
   return Component;
 }
