@@ -7,7 +7,9 @@ export interface BaseProps {
     fragmentIndex?: number;
     fitText?: boolean;
 }
-export declare type MakeProps<Interface, T extends keyof ReactHTML> = Interface & BaseProps & SimpleComponentProps<T>[0];
+export declare type MakeProps<Interface, T extends keyof ReactHTML> = Interface & BaseProps & SimpleComponentProps<T>[0] & {
+    children: React.ReactNode;
+};
 export declare type MakeFullProps<T extends keyof ReactHTML> = BaseProps & SimpleComponentProps<T>[0] & {
     children: React.ReactNode;
 };

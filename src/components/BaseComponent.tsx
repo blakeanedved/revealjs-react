@@ -9,7 +9,9 @@ export interface BaseProps {
   fitText?: boolean;
 }
 
-export type MakeProps<Interface, T extends keyof ReactHTML> = Interface & BaseProps & SimpleComponentProps<T>[0];
+export type MakeProps<Interface, T extends keyof ReactHTML> = Interface & BaseProps & SimpleComponentProps<T>[0] & {
+  children: React.ReactNode;
+};
 export type MakeFullProps<T extends keyof ReactHTML> = BaseProps & SimpleComponentProps<T>[0] & {
   children: React.ReactNode;
 };
