@@ -1,10 +1,10 @@
 /// <reference types="react" />
-import { BaseProps } from './BaseComponent';
-export interface ImageProps extends BaseProps {
+import { MakeProps } from './BaseComponent';
+export interface ImageProps {
     alt?: string;
     height?: number;
     width?: number;
     src: string;
 }
-declare function Image({ id, alt, fragmentIndex, height, src, width, ...props }: ImageProps): JSX.Element;
+declare function Image({ id, alt, fragmentIndex, height, src, width, ...props }: MakeProps<ImageProps, 'img'>): JSX.Element;
 export default Image;

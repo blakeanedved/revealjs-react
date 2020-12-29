@@ -1,4 +1,4 @@
-import { generateBaseComponent, Props as BaseProps } from "./BaseComponent";
-export type LiProps = Exclude<BaseProps, "component">;
+import { generateBaseComponent, MakeFullProps } from "./BaseComponent";
+export type LiProps = MakeFullProps<'li'>;
 
 export default generateBaseComponent('li');

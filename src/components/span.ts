@@ -1,4 +1,4 @@
-import { generateBaseComponent, Props as BaseProps } from "./BaseComponent";
-export type SpanProps = Exclude<BaseProps, "component">;
+import { generateBaseComponent, MakeFullProps } from "./BaseComponent";
+export type SpanProps = MakeFullProps<'span'>;
 
 export default generateBaseComponent('span');

@@ -1,6 +1,5 @@
-import React from 'react';
-export interface NoteProps {
-    children: React.ReactNode;
-}
-declare function Note({ children }: NoteProps): JSX.Element;
+/// <reference types="react" />
+import { MakeFullProps } from "./BaseComponent";
+export declare type NoteProps = MakeFullProps<'aside'>;
+declare function Note(props: NoteProps): JSX.Element;
 export default Note;

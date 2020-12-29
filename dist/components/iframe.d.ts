@@ -1,11 +1,11 @@
 /// <reference types="react" />
-import { BaseProps } from './BaseComponent';
-export interface IFrameProps extends BaseProps {
+import { MakeProps } from './BaseComponent';
+export interface IFrameProps {
     height?: number;
     lazy?: boolean;
     preload?: string;
     src: string;
     width?: number;
 }
-declare function IFrame({ id, fragmentIndex, height, lazy, preload, src, width, ...props }: IFrameProps): JSX.Element;
+declare function IFrame({ id, fragmentIndex, height, lazy, preload, src, width, ...props }: MakeProps<IFrameProps, 'iframe'>): JSX.Element;
 export default IFrame;

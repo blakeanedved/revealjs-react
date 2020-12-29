@@ -1,7 +1,7 @@
 import React from 'react';
-import { BaseProps, getClassName } from './BaseComponent';
+import { MakeProps, getClassNameProps } from './BaseComponent';
 
-export interface LinkProps extends BaseProps {
+export interface LinkProps {
   children: React.ReactNode;
   href?: string;
   slide?: string | [string, string];
@@ -14,9 +14,10 @@ function Link({
   href,
   slide,
   ...props
-}: LinkProps) {
+}: MakeProps<LinkProps, 'a'>) {
   return (
     <a
+      {...getClassNameProps(props)}
       data-id={id}
       id={id}
       href={
@@ -28,7 +29,6 @@ function Link({
               : `${parseInt(slide[0], 10) - 1}/${parseInt(slide[1], 10) - 1}`
           }`)
       }
-      className={getClassName(props)}
       data-fragment-index={fragmentIndex}
     >
       {children}

@@ -1,7 +1,7 @@
 import React from 'react';
-import { BaseProps, getClassName } from './BaseComponent';
+import { MakeProps, getClassNameProps } from './BaseComponent';
 
-export interface ImageProps extends BaseProps {
+export interface ImageProps {
   alt?: string;
   height?: number;
   width?: number;
@@ -16,12 +16,12 @@ function Image({
   src,
   width,
   ...props
-}: ImageProps) {
+}: MakeProps<ImageProps, 'img'>) {
   return (
     <img
+      {...getClassNameProps(props)}
       data-id={id}
       id={id}
-      className={getClassName(props)}
       src={src}
       alt={alt}
       width={width}

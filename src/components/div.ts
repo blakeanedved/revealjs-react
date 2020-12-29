@@ -1,4 +1,4 @@
-import { generateBaseComponent, Props as BaseProps } from "./BaseComponent";
-export type DivProps = Exclude<BaseProps, "component">;
+import { generateBaseComponent, MakeFullProps } from "./BaseComponent";
+export type DivProps = MakeFullProps<'div'>;
 
 export default generateBaseComponent('div');

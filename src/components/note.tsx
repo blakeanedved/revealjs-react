@@ -1,11 +1,10 @@
 import React from 'react';
+import { MakeFullProps } from "./BaseComponent";
 
-export interface NoteProps {
-  children: React.ReactNode;
-}
+export type NoteProps = MakeFullProps<'aside'>;
 
-function Note({ children }: NoteProps) {
-  return <aside className="notes">{children}</aside>;
+function Note(props: NoteProps) {
+  return <aside {...props} className="notes" />;
 }
 
 export default Note;

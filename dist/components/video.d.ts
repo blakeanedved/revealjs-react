@@ -1,6 +1,6 @@
 /// <reference types="react" />
-import { BaseProps } from './BaseComponent';
-export interface VideoProps extends BaseProps {
+import { MakeProps } from './BaseComponent';
+export interface VideoProps {
     autoplay?: boolean;
     controls?: boolean;
     height?: number;
@@ -11,5 +11,5 @@ export interface VideoProps extends BaseProps {
     width?: number;
     src: string[] | string;
 }
-declare function Video({ id, autoplay, controls, fragmentIndex, height, lazy, loop, muted, preload, width, src, ...props }: VideoProps): JSX.Element;
+declare function Video({ id, autoplay, controls, fragmentIndex, height, lazy, loop, muted, preload, width, src, ...props }: MakeProps<VideoProps, 'video'>): JSX.Element;
 export default Video;

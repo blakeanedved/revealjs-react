@@ -1,5 +1,5 @@
 import React from 'react';
-import { BaseProps } from './BaseComponent';
+import { getClassNameProps, MakeProps } from './BaseComponent';
 
 export type AudioTypes =
  | '3gp'
@@ -32,7 +32,7 @@ const formatMap: {
   webm: 'audio/webm',
 };
 
-export interface AudioProps extends BaseProps {
+export interface AudioProps {
   autoplay?: boolean;
   controls?: boolean;
   lazy?: string;
@@ -55,17 +55,14 @@ function Audio({
   muted,
   preload,
   src,
-}: AudioProps) {
+  ...props
+}: MakeProps<AudioProps, 'audio'>) {
   if (Array.isArray(src)) {
     return (
       <audio
+        {...getClassNameProps(props)}
         data-id={id}
         id={id}
-        className={
-          className +
-          (fragment ? ' fragment' : '') +
-          (fragmentStyle ? ` ${fragmentStyle}` : '')
-        }
         data-autoplay={autoplay}
         controls={controls}
         muted={muted}
@@ -86,13 +83,9 @@ function Audio({
 
   return (
     <audio
+      {...getClassNameProps(props)}
       data-id={id}
       id={id}
-      className={
-        className +
-        (fragment ? ' fragment' : '') +
-        (fragmentStyle ? ` ${fragmentStyle}` : '')
-      }
       data-autoplay={autoplay}
       src={lazy ? '' : src}
       data-src={lazy ? src : false}

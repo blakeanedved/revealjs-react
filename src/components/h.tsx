@@ -1,5 +1,5 @@
-import { generateBaseComponent, Props as BaseProps } from "./BaseComponent";
-export type HProps = Exclude<BaseProps, "component">;
+import { generateBaseComponent, MakeFullProps } from "./BaseComponent";
+export type HProps = MakeFullProps<'h1'>;
 
 export const H1 = generateBaseComponent('h1');
 export const H2 = generateBaseComponent('h2');

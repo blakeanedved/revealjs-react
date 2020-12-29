@@ -19,8 +19,8 @@ const formatMap = {
 };
 function Video({ id, autoplay, controls, fragmentIndex, height, lazy, loop, muted, preload, width, src, ...props }) {
     if (Array.isArray(src)) {
-        return (react_1.default.createElement("video", { "data-id": id, id: id, className: BaseComponent_1.getClassName(props), "data-autoplay": autoplay, controls: controls, muted: muted, loop: loop, height: height, width: width, "data-fragment-index": fragmentIndex }, src.map((element) => (react_1.default.createElement("source", { src: lazy ? '' : element, "data-src": lazy ? element : false, "data-preload": preload, type: formatMap[/\.[^.]+$/.exec(element)?.[0] || 'mp4'] })))));
+        return (react_1.default.createElement("video", Object.assign({}, BaseComponent_1.getClassNameProps(props), { "data-id": id, id: id, "data-autoplay": autoplay, controls: controls, muted: muted, loop: loop, height: height, width: width, "data-fragment-index": fragmentIndex }), src.map((element) => (react_1.default.createElement("source", { src: lazy ? '' : element, "data-src": lazy ? element : false, "data-preload": preload, type: formatMap[/\.[^.]+$/.exec(element)?.[0] || 'mp4'] })))));
     }
-    return (react_1.default.createElement("video", { "data-id": id, id: id, className: BaseComponent_1.getClassName(props), "data-autoplay": autoplay, src: lazy ? '' : src, "data-src": lazy ? src : false, "data-preload": preload, controls: controls, muted: muted, loop: loop, height: height, width: width, "data-fragment-index": fragmentIndex }));
+    return (react_1.default.createElement("video", Object.assign({}, BaseComponent_1.getClassNameProps(props), { "data-id": id, id: id, "data-autoplay": autoplay, src: lazy ? '' : src, "data-src": lazy ? src : false, "data-preload": preload, controls: controls, muted: muted, loop: loop, height: height, width: width, "data-fragment-index": fragmentIndex })));
 }
 exports.default = Video;

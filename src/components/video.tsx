@@ -1,7 +1,7 @@
 import React from 'react';
-import { BaseProps, getClassName } from './BaseComponent';
+import { MakeProps, getClassNameProps } from './BaseComponent';
 
-export interface VideoProps extends BaseProps {
+export interface VideoProps {
   autoplay?: boolean;
   controls?: boolean;
   height?: number;
@@ -53,13 +53,13 @@ function Video({
   width,
   src,
   ...props
-}: VideoProps) {
+}: MakeProps<VideoProps, 'video'>) {
   if (Array.isArray(src)) {
     return (
       <video
+        {...getClassNameProps(props)}
         data-id={id}
         id={id}
-        className={getClassName(props)}
         data-autoplay={autoplay}
         controls={controls}
         muted={muted}
@@ -84,9 +84,9 @@ function Video({
 
   return (
     <video
+      {...getClassNameProps(props)}
       data-id={id}
       id={id}
-      className={getClassName(props)}
       data-autoplay={autoplay}
       src={lazy ? '' : src}
       data-src={lazy ? src : false}

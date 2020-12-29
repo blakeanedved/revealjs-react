@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateBaseComponent = exports.getClassName = void 0;
+exports.generateBaseComponent = exports.getClassNameProps = void 0;
 const react_1 = require("react");
-function getClassName(baseProps) {
-    const { className, fragment, fragmentStyle, fitText } = baseProps;
+function getClassNameProps(baseProps) {
+    const { className, fragment, fragmentStyle, fitText, ...props } = baseProps;
     const classes = className ? [className] : [];
     if (fragment)
         classes.push("fragment");
@@ -12,10 +12,13 @@ function getClassName(baseProps) {
     if (fragmentStyle)
         classes.push(fragmentStyle);
     if (!classes.length)
-        return undefined;
-    return classes.join(' ');
+        return props;
+    return {
+        ...props,
+        className: classes.join(' '),
+    };
 }
-exports.getClassName = getClassName;
+exports.getClassNameProps = getClassNameProps;
 function generateBaseComponent(component) {
     const Component = (props) => BaseComponent({ ...props, component });
     Component.displayName = `${component[0].toUpperCase()}${component.slice(1)}`;
@@ -24,9 +27,9 @@ function generateBaseComponent(component) {
 exports.generateBaseComponent = generateBaseComponent;
 function BaseComponent({ component, id, fragmentIndex, children, ...props }) {
     return react_1.createElement(component, {
+        ...getClassNameProps(props),
         'data-id': id,
         id,
-        className: getClassName(props),
         'data-fragment-index': fragmentIndex,
         children,
     });

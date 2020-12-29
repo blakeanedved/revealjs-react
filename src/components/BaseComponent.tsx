@@ -1,4 +1,4 @@
-import { createElement } from 'react';
+import { createElement, DetailedHTMLFactory, ReactHTML } from 'react';
 
 export interface BaseProps {
   id?: string;
@@ -8,6 +8,11 @@ export interface BaseProps {
   fragmentIndex?: number;
   fitText?: boolean;
 }
+
+export type MakeProps<Interface, T extends keyof ReactHTML> = Interface & BaseProps & SimpleComponentProps<T>[0];
+export type MakeFullProps<T extends keyof ReactHTML> = BaseProps & SimpleComponentProps<T>[0] & {
+  children: React.ReactNode;
+};
 
 export type SimpleComponent =
   | 'h1'
@@ -28,41 +33,52 @@ export type SimpleComponent =
   | 'p'
   | 'span'
   | 'ul';
-export interface Props extends BaseProps {
+
+export type SimpleComponentProps<T extends keyof ReactHTML> =
+  ReactHTML[T] extends DetailedHTMLFactory<infer Attributes, any>
+  ? [Attributes, Element]
+  : never;
+
+export interface RevealProps {
   component: SimpleComponent;
   children: React.ReactNode;
 }
 
-export function getClassName(
+export type Props<T extends keyof ReactHTML> = MakeProps<RevealProps, T>;
+
+export function getClassNameProps(
   baseProps: BaseProps
 ) {
-  const { className, fragment, fragmentStyle, fitText } = baseProps;
+  const { className, fragment, fragmentStyle, fitText, ...props } = baseProps;
   const classes = className ? [className] : [];
   if (fragment) classes.push("fragment");
   if (fitText) classes.push("r-fit-text");
   if (fragmentStyle) classes.push(fragmentStyle);
-  if (!classes.length) return undefined;
-  return classes.join(' ');
+  if (!classes.length) return props;
+  return {
+    ...props,
+    className: classes.join(' '),
+  }
 }
 
-export function generateBaseComponent(component: SimpleComponent) {
-  const Component = (props: Omit<Props, 'component'>) =>
+export function generateBaseComponent<T extends SimpleComponent>(component: T) {
+  const Component = (props: Omit<Props<T>, 'component'>) =>
     BaseComponent({ ...props, component });
   Component.displayName = `${component[0].toUpperCase()}${component.slice(1)}`;
   return Component;
 }
 
-export default function BaseComponent({
+export default function BaseComponent<T extends keyof ReactHTML>({
   component,
   id,
   fragmentIndex,
   children,
   ...props
-}: Props) {
+}: Props<T>) {
   return createElement(component, {
+    ...getClassNameProps(props),
     'data-id': id,
     id,
-    className: getClassName(props),
     'data-fragment-index': fragmentIndex,
     children,
   });

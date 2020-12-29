@@ -1,7 +1,7 @@
 import React from 'react';
-import { BaseProps, getClassName } from './BaseComponent';
+import { MakeProps, getClassNameProps } from './BaseComponent';
 
-export interface CodeProps extends BaseProps {
+export interface CodeProps {
   children: { code: string };
   language?: string;
   escape?: boolean;
@@ -18,13 +18,13 @@ function Code({
   lineNumbers,
   noTrim,
   ...props
-}: CodeProps) {
+}: MakeProps<CodeProps, 'pre'>) {
   return (
     <pre
+      {...getClassNameProps(props)}
       data-id={id}
       id={id}
       data-fragment-index={fragmentIndex}
-      className={getClassName(props)}
     >
       <code
         className={language}

@@ -6,6 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const BaseComponent_1 = require("./BaseComponent");
 function Image({ id, alt, fragmentIndex, height, src, width, ...props }) {
-    return (react_1.default.createElement("img", { "data-id": id, id: id, className: BaseComponent_1.getClassName(props), src: src, alt: alt, width: width, height: height, "data-fragment-index": fragmentIndex }));
+    return (react_1.default.createElement("img", Object.assign({}, BaseComponent_1.getClassNameProps(props), { "data-id": id, id: id, src: src, alt: alt, width: width, height: height, "data-fragment-index": fragmentIndex })));
 }
 exports.default = Image;

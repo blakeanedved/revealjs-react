@@ -1,7 +1,7 @@
 import React from 'react';
-import { BaseProps, getClassName } from './BaseComponent';
+import { MakeProps, getClassNameProps } from './BaseComponent';
 
-export interface IFrameProps extends BaseProps {
+export interface IFrameProps {
   height?: number;
   lazy?: boolean;
   preload?: string;
@@ -18,12 +18,12 @@ function IFrame({
   src,
   width,
   ...props
-}: IFrameProps) {
+}: MakeProps<IFrameProps, 'iframe'>) {
   return (
     <iframe
+      {...getClassNameProps(props)}
       data-id={id}
       id={id}
-      className={getClassName(props)}
       src={lazy ? undefined : src}
       data-src={lazy ? src : false}
       data-preload={preload}

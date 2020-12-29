@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
-function Note({ children }) {
-    return react_1.default.createElement("aside", { className: "notes" }, children);
+function Note(props) {
+    return react_1.default.createElement("aside", Object.assign({}, props, { className: "notes" }));
 }
 exports.default = Note;

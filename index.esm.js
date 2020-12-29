@@ -8,72 +8,6 @@ export { default as NotesPlugin } from 'reveal.js/plugin/notes/notes.esm';
 export { default as SearchPlugin } from 'reveal.js/plugin/search/search.esm';
 export { default as ZoomPlugin } from 'reveal.js/plugin/zoom/zoom.esm';
 
-var formatMap = {
-  '3gp': 'audio/3gp',
-  aac: 'audio/aac',
-  flac: 'audio/flac',
-  mpg: 'audio/mpeg',
-  mpeg: 'audio/mpeg',
-  mp3: 'audio/mp3',
-  mp4: 'audio/mp4',
-  m4a: 'audio/mp4',
-  oga: 'audio/ogg',
-  ogg: 'audio/ogg',
-  wav: 'audio/wav',
-  webm: 'audio/webm'
-};
-
-function Audio(_ref) {
-  var id = _ref.id,
-      autoplay = _ref.autoplay,
-      className = _ref.className,
-      controls = _ref.controls,
-      fragment = _ref.fragment,
-      fragmentIndex = _ref.fragmentIndex,
-      fragmentStyle = _ref.fragmentStyle,
-      lazy = _ref.lazy,
-      loop = _ref.loop,
-      muted = _ref.muted,
-      preload = _ref.preload,
-      src = _ref.src;
-
-  if (Array.isArray(src)) {
-    return /*#__PURE__*/React.createElement("audio", {
-      "data-id": id,
-      id: id,
-      className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-      "data-autoplay": autoplay,
-      controls: controls,
-      muted: muted,
-      loop: loop,
-      "data-fragment-index": fragmentIndex
-    }, src.map(function (element) {
-      var _$exec;
-
-      return /*#__PURE__*/React.createElement("source", {
-        src: lazy ? false : element,
-        "data-src": lazy ? element : false,
-        "data-preload": preload,
-        type: formatMap[(_$exec = /\.[^.]+$/.exec(element)) === null || _$exec === void 0 ? void 0 : _$exec[0]] || 'mp3'
-      });
-    }));
-  }
-
-  return /*#__PURE__*/React.createElement("audio", {
-    "data-id": id,
-    id: id,
-    className: className + (fragment ? ' fragment' : '') + (fragmentStyle ? " ".concat(fragmentStyle) : ''),
-    "data-autoplay": autoplay,
-    src: lazy ? '' : src,
-    "data-src": lazy ? src : false,
-    "data-preload": preload,
-    controls: controls,
-    muted: muted,
-    loop: loop,
-    "data-fragment-index": fragmentIndex
-  });
-}
-
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -87,6 +21,24 @@ function _defineProperty(obj, key, value) {
   }
 
   return obj;
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
 }
 
 function ownKeys(object, enumerableOnly) {
@@ -159,17 +111,21 @@ function _objectWithoutProperties(source, excluded) {
   return target;
 }
 
-function getClassName(baseProps) {
+function getClassNameProps(baseProps) {
   var className = baseProps.className,
       fragment = baseProps.fragment,
       fragmentStyle = baseProps.fragmentStyle,
-      fitText = baseProps.fitText;
+      fitText = baseProps.fitText,
+      props = _objectWithoutProperties(baseProps, ["className", "fragment", "fragmentStyle", "fitText"]);
+
   var classes = className ? [className] : [];
   if (fragment) classes.push("fragment");
   if (fitText) classes.push("r-fit-text");
   if (fragmentStyle) classes.push(fragmentStyle);
-  if (!classes.length) return undefined;
-  return classes.join(' ');
+  if (!classes.length) return props;
+  return _objectSpread2(_objectSpread2({}, props), {}, {
+    className: classes.join(' ')
+  });
 }
 function generateBaseComponent(component) {
   var Component = function Component(props) {
@@ -188,13 +144,77 @@ function BaseComponent(_ref) {
       children = _ref.children,
       props = _objectWithoutProperties(_ref, ["component", "id", "fragmentIndex", "children"]);
 
-  return /*#__PURE__*/createElement(component, {
+  return /*#__PURE__*/createElement(component, _objectSpread2(_objectSpread2({}, getClassNameProps(props)), {}, {
     'data-id': id,
     id: id,
-    className: getClassName(props),
     'data-fragment-index': fragmentIndex,
     children: children
-  });
+  }));
+}
+
+var formatMap = {
+  '3gp': 'audio/3gp',
+  aac: 'audio/aac',
+  flac: 'audio/flac',
+  mpg: 'audio/mpeg',
+  mpeg: 'audio/mpeg',
+  mp3: 'audio/mp3',
+  mp4: 'audio/mp4',
+  m4a: 'audio/mp4',
+  oga: 'audio/ogg',
+  ogg: 'audio/ogg',
+  wav: 'audio/wav',
+  webm: 'audio/webm'
+};
+
+function Audio(_ref) {
+  var id = _ref.id,
+      autoplay = _ref.autoplay,
+      className = _ref.className,
+      controls = _ref.controls,
+      fragment = _ref.fragment,
+      fragmentIndex = _ref.fragmentIndex,
+      fragmentStyle = _ref.fragmentStyle,
+      lazy = _ref.lazy,
+      loop = _ref.loop,
+      muted = _ref.muted,
+      preload = _ref.preload,
+      src = _ref.src,
+      props = _objectWithoutProperties(_ref, ["id", "autoplay", "className", "controls", "fragment", "fragmentIndex", "fragmentStyle", "lazy", "loop", "muted", "preload", "src"]);
+
+  if (Array.isArray(src)) {
+    return /*#__PURE__*/React.createElement("audio", _extends({}, getClassNameProps(props), {
+      "data-id": id,
+      id: id,
+      "data-autoplay": autoplay,
+      controls: controls,
+      muted: muted,
+      loop: loop,
+      "data-fragment-index": fragmentIndex
+    }), src.map(function (element) {
+      var _$exec;
+
+      return /*#__PURE__*/React.createElement("source", {
+        src: lazy ? false : element,
+        "data-src": lazy ? element : false,
+        "data-preload": preload,
+        type: formatMap[(_$exec = /\.[^.]+$/.exec(element)) === null || _$exec === void 0 ? void 0 : _$exec[0]] || 'mp3'
+      });
+    }));
+  }
+
+  return /*#__PURE__*/React.createElement("audio", _extends({}, getClassNameProps(props), {
+    "data-id": id,
+    id: id,
+    "data-autoplay": autoplay,
+    src: lazy ? '' : src,
+    "data-src": lazy ? src : false,
+    "data-preload": preload,
+    controls: controls,
+    muted: muted,
+    loop: loop,
+    "data-fragment-index": fragmentIndex
+  }));
 }
 
 var blockquote = generateBaseComponent('blockquote');
@@ -209,12 +229,11 @@ function Code(_ref) {
       noTrim = _ref.noTrim,
       props = _objectWithoutProperties(_ref, ["id", "children", "language", "escape", "fragmentIndex", "lineNumbers", "noTrim"]);
 
-  return /*#__PURE__*/React.createElement("pre", {
+  return /*#__PURE__*/React.createElement("pre", _extends({}, getClassNameProps(props), {
     "data-id": id,
     id: id,
-    "data-fragment-index": fragmentIndex,
-    className: getClassName(props)
-  }, /*#__PURE__*/React.createElement("code", {
+    "data-fragment-index": fragmentIndex
+  }), /*#__PURE__*/React.createElement("code", {
     className: language,
     "data-noescape": !escape,
     "data-trim": !noTrim,
@@ -249,17 +268,16 @@ function IFrame(_ref) {
       width = _ref.width,
       props = _objectWithoutProperties(_ref, ["id", "fragmentIndex", "height", "lazy", "preload", "src", "width"]);
 
-  return /*#__PURE__*/React.createElement("iframe", {
+  return /*#__PURE__*/React.createElement("iframe", _extends({}, getClassNameProps(props), {
     "data-id": id,
     id: id,
-    className: getClassName(props),
     src: lazy ? undefined : src,
     "data-src": lazy ? src : false,
     "data-preload": preload,
     width: width,
     height: height,
     "data-fragment-index": fragmentIndex
-  });
+  }));
 }
 
 function Image(_ref) {
@@ -271,16 +289,15 @@ function Image(_ref) {
       width = _ref.width,
       props = _objectWithoutProperties(_ref, ["id", "alt", "fragmentIndex", "height", "src", "width"]);
 
-  return /*#__PURE__*/React.createElement("img", {
+  return /*#__PURE__*/React.createElement("img", _extends({}, getClassNameProps(props), {
     "data-id": id,
     id: id,
-    className: getClassName(props),
     src: src,
     alt: alt,
     width: width,
     height: height,
     "data-fragment-index": fragmentIndex
-  });
+  }));
 }
 
 var li = generateBaseComponent('li');
@@ -293,22 +310,20 @@ function Link(_ref) {
       slide = _ref.slide,
       props = _objectWithoutProperties(_ref, ["id", "children", "fragmentIndex", "href", "slide"]);
 
-  return /*#__PURE__*/React.createElement("a", {
+  return /*#__PURE__*/React.createElement("a", _extends({}, getClassNameProps(props), {
     "data-id": id,
     id: id,
     href: href || slide && "#/".concat(typeof slide === 'string' ? parseInt(slide, 10) - 1 : "".concat(parseInt(slide[0], 10) - 1, "/").concat(parseInt(slide[1], 10) - 1)),
-    className: getClassName(props),
     "data-fragment-index": fragmentIndex
-  }, children);
+  }), children);
 }
 
 var main = generateBaseComponent('main');
 
-function Note(_ref) {
-  var children = _ref.children;
-  return /*#__PURE__*/React.createElement("aside", {
+function Note(props) {
+  return /*#__PURE__*/React.createElement("aside", _extends({}, props, {
     className: "notes"
-  }, children);
+  }));
 }
 
 var ol = generateBaseComponent('ol');
@@ -602,10 +617,9 @@ function Video(_ref) {
       props = _objectWithoutProperties(_ref, ["id", "autoplay", "controls", "fragmentIndex", "height", "lazy", "loop", "muted", "preload", "width", "src"]);
 
   if (Array.isArray(src)) {
-    return /*#__PURE__*/React.createElement("video", {
+    return /*#__PURE__*/React.createElement("video", _extends({}, getClassNameProps(props), {
       "data-id": id,
       id: id,
-      className: getClassName(props),
       "data-autoplay": autoplay,
       controls: controls,
       muted: muted,
@@ -613,7 +627,7 @@ function Video(_ref) {
       height: height,
       width: width,
       "data-fragment-index": fragmentIndex
-    }, src.map(function (element) {
+    }), src.map(function (element) {
       var _$exec;
 
       return /*#__PURE__*/React.createElement("source", {
@@ -625,10 +639,9 @@ function Video(_ref) {
     }));
   }
 
-  return /*#__PURE__*/React.createElement("video", {
+  return /*#__PURE__*/React.createElement("video", _extends({}, getClassNameProps(props), {
     "data-id": id,
     id: id,
-    className: getClassName(props),
     "data-autoplay": autoplay,
     src: lazy ? '' : src,
     "data-src": lazy ? src : false,
@@ -639,7 +652,7 @@ function Video(_ref) {
     height: height,
     width: width,
     "data-fragment-index": fragmentIndex
-  });
+  }));
 }
 
 export { Audio, blockquote as BlockQuote, Code, div as Div, figcaption as FigCaption, figure as Figure, footer as Footer, H1, H2, H3, H4, H5, H6, header as Header, IFrame, Image, li as Li, Link, main as Main, Note, ol as Ol, p as P, RevealJS, Slide, span as Span, ul as Ul, Video };

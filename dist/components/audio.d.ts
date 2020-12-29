@@ -1,7 +1,7 @@
 /// <reference types="react" />
-import { BaseProps } from './BaseComponent';
+import { MakeProps } from './BaseComponent';
 export declare type AudioTypes = '3gp' | 'aac' | 'flac' | 'mpg' | 'mpeg' | 'mp3' | 'mp4' | 'm4a' | 'oga' | 'ogg' | 'wav' | 'webm';
-export interface AudioProps extends BaseProps {
+export interface AudioProps {
     autoplay?: boolean;
     controls?: boolean;
     lazy?: string;
@@ -10,5 +10,5 @@ export interface AudioProps extends BaseProps {
     preload?: boolean;
     src: string;
 }
-declare function Audio({ id, autoplay, className, controls, fragment, fragmentIndex, fragmentStyle, lazy, loop, muted, preload, src, }: AudioProps): JSX.Element;
+declare function Audio({ id, autoplay, className, controls, fragment, fragmentIndex, fragmentStyle, lazy, loop, muted, preload, src, ...props }: MakeProps<AudioProps, 'audio'>): JSX.Element;
 export default Audio;
