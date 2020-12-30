@@ -1,6 +1,6 @@
 {
-  "name": "revealjs-react",
-  "version": "0.2.0",
+  "name": "@gregcello/revealjs-react",
+  "version": "0.1.0",
   "description": "A React wrapper for the RevealJS Presentation Library.",
   "keywords": [
     "React",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blakeanedved/revealjs-react.git"
+    "url": "git+https://github.com/cellog/revealjs-react.git"
   },
   "author": "Blake Nedved <blakeanedved@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/blakeanedved/revealjs-react/issues"
+    "url": "https://github.com/cellog/revealjs-react/issues"
   },
-  "homepage": "https://github.com/blakeanedved/revealjs-react#readme",
+  "homepage": "https://github.com/cellog/revealjs-react#readme",
   "peerDependencies": {
     "react": "^16.0.0 || ^17.0.0",
     "react-dom": "^16.0.0 || ^17.0.0",
