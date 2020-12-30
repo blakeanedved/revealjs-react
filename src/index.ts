@@ -39,32 +39,32 @@ import type {
   SpanProps,
   UlProps,
 } from "./components/SimpleComponents";
-import Audio from './components/audio';
-import type { AudioProps } from './components/audio';
-import Code from './components/code';
-import type { CodeProps } from './components/code';
-import IFrame from './components/iframe';
-import type { IFrameProps } from './components/iframe';
-import Image from './components/image';
-import type { ImageProps } from './components/image';
-import Link from './components/link';
-import type { LinkProps } from './components/link';
-import Note from './components/note';
-import type { NoteProps } from './components/note';
-import RevealJS from './components/reveal';
-import type { RevealJSProps } from './components/reveal';
-import Slide from './components/slide';
-import type { SlideProps } from './components/slide';
-import Video from './components/video';
-import type { VideoProps } from './components/video';
+import Audio from './components/Audio';
+import type { AudioProps } from './components/Audio';
+import Code from './components/Code';
+import type { CodeProps } from './components/Code';
+import IFrame from './components/Iframe';
+import type { IFrameProps } from './components/Iframe';
+import Image from './components/Image';
+import type { ImageProps } from './components/Image';
+import Link from './components/Link';
+import type { LinkProps } from './components/Link';
+import Note from './components/Note';
+import type { NoteProps } from './components/Note';
+import RevealJS from './components/RevealJS';
+import type { RevealJSProps } from './components/RevealJS';
+import Slide from './components/Slide';
+import type { SlideProps } from './components/Slide';
+import Video from './components/Video';
+import type { VideoProps } from './components/Video';
 
 // plugins
-import HighlightPlugin from "./plugins/highlight";
-import MathPlugin from "./plugins/math";
-import MarkdownPlugin from "./plugins/markdown";
-import NotesPlugin from "./plugins/notes";
-import SearchPlugin from "./plugins/search";
-import ZoomPlugin from "./plugins/zoom";
+import HighlightPlugin from "./plugins/HighlightPlugin";
+import MathPlugin from "./plugins/MathPlugin";
+import MarkdownPlugin from "./plugins/MarkdownPlugin";
+import NotesPlugin from "./plugins/NotesPlugin";
+import SearchPlugin from "./plugins/SearchPlugin";
+import ZoomPlugin from "./plugins/ZoomPlugin";
 
 // types for reveal.js
 import type {
