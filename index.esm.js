@@ -1,12 +1,12 @@
 import React, { createElement, useEffect } from 'react';
 import Reveal from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
-export { default as HighlightPlugin } from 'reveal.js/plugin/highlight/highlight.esm';
-export { default as MathPlugin } from 'reveal.js/plugin/math/math.esm';
-export { default as MarkdownPlugin } from 'reveal.js/plugin/markdown/markdown.esm';
-export { default as NotesPlugin } from 'reveal.js/plugin/notes/notes.esm';
-export { default as SearchPlugin } from 'reveal.js/plugin/search/search.esm';
-export { default as ZoomPlugin } from 'reveal.js/plugin/zoom/zoom.esm';
+import HighlightPlugin$1 from 'reveal.js/plugin/highlight/highlight.esm';
+import MathPlugin$1 from 'reveal.js/plugin/math/math.esm';
+import MarkdownPlugin$1 from 'reveal.js/plugin/markdown/markdown.esm';
+import NotesPlugin$1 from 'reveal.js/plugin/notes/notes.esm';
+import SearchPlugin$1 from 'reveal.js/plugin/search/search.esm';
+import ZoomPlugin$1 from 'reveal.js/plugin/zoom/zoom.esm';
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -666,5 +666,18 @@ function Video(_ref) {
   }));
 }
 
-export { Audio, BlockQuote, Code, Div, FigCaption, Figure, Footer, H1, H2, H3, H4, H5, H6, Header, IFrame, Image, Li, Link, Main, Note, Ol, P, RevealJS, Slide, Span, Ul, Video };
+/*!
+ * revealjs-react 1.0.0
+ * MIT licensed
+ *
+ * Copyright (C) 2020 Blake Nedved, https://blakeanedved.github.io/
+ */
+var HighlightPlugin = HighlightPlugin$1;
+var MathPlugin = MathPlugin$1;
+var MarkdownPlugin = MarkdownPlugin$1;
+var NotesPlugin = NotesPlugin$1;
+var SearchPlugin = SearchPlugin$1;
+var ZoomPlugin = ZoomPlugin$1; // types for reveal.js
+
+export { Audio, BlockQuote, Code, Div, FigCaption, Figure, Footer, H1, H2, H3, H4, H5, H6, Header, HighlightPlugin, IFrame, Image, Li, Link, Main, MarkdownPlugin, MathPlugin, Note, NotesPlugin, Ol, P, RevealJS, SearchPlugin, Slide, Span, Ul, Video, ZoomPlugin };
 //# sourceMappingURL=index.esm.js.map

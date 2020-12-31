@@ -59,12 +59,19 @@ import Video from './components/Video';
 import type { VideoProps } from './components/Video';
 
 // plugins
-import HighlightPlugin from "./plugins/HighlightPlugin";
-import MathPlugin from "./plugins/MathPlugin";
-import MarkdownPlugin from "./plugins/MarkdownPlugin";
-import NotesPlugin from "./plugins/NotesPlugin";
-import SearchPlugin from "./plugins/SearchPlugin";
-import ZoomPlugin from "./plugins/ZoomPlugin";
+import UntypedHighlightPlugin from "./plugins/HighlightPlugin";
+import UntypedMathPlugin from "./plugins/MathPlugin";
+import UntypedMarkdownPlugin from "./plugins/MarkdownPlugin";
+import UntypedNotesPlugin from "./plugins/NotesPlugin";
+import UntypedSearchPlugin from "./plugins/SearchPlugin";
+import UntypedZoomPlugin from "./plugins/ZoomPlugin";
+
+const HighlightPlugin: RevealPlugin = UntypedHighlightPlugin;
+const MathPlugin: RevealPlugin = UntypedMathPlugin;
+const MarkdownPlugin: RevealPlugin = UntypedMarkdownPlugin;
+const NotesPlugin: RevealPlugin = UntypedNotesPlugin;
+const SearchPlugin: RevealPlugin = UntypedSearchPlugin;
+const ZoomPlugin: RevealPlugin = UntypedZoomPlugin;
 
 // types for reveal.js
 import type {
@@ -75,8 +82,8 @@ import type {
   RevealRoutes,
   RevealSlideCoordinates,
   RevealSlideSize
-} from "reveal.js";
-import type Reveal from "reveal.js";
+} from "../types/reveal.js";
+import type Reveal from "../types/reveal.js";
 
 export {
   Audio,

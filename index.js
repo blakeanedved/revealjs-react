@@ -5,23 +5,23 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var React = require('react');
 var Reveal = require('reveal.js');
 require('reveal.js/dist/reveal.css');
-var HighlightPlugin = require('reveal.js/plugin/highlight/highlight.esm');
-var MathPlugin = require('reveal.js/plugin/math/math.esm');
-var MarkdownPlugin = require('reveal.js/plugin/markdown/markdown.esm');
-var NotesPlugin = require('reveal.js/plugin/notes/notes.esm');
-var SearchPlugin = require('reveal.js/plugin/search/search.esm');
-var ZoomPlugin = require('reveal.js/plugin/zoom/zoom.esm');
+var HighlightPlugin$1 = require('reveal.js/plugin/highlight/highlight.esm');
+var MathPlugin$1 = require('reveal.js/plugin/math/math.esm');
+var MarkdownPlugin$1 = require('reveal.js/plugin/markdown/markdown.esm');
+var NotesPlugin$1 = require('reveal.js/plugin/notes/notes.esm');
+var SearchPlugin$1 = require('reveal.js/plugin/search/search.esm');
+var ZoomPlugin$1 = require('reveal.js/plugin/zoom/zoom.esm');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 var Reveal__default = /*#__PURE__*/_interopDefaultLegacy(Reveal);
-var HighlightPlugin__default = /*#__PURE__*/_interopDefaultLegacy(HighlightPlugin);
-var MathPlugin__default = /*#__PURE__*/_interopDefaultLegacy(MathPlugin);
-var MarkdownPlugin__default = /*#__PURE__*/_interopDefaultLegacy(MarkdownPlugin);
-var NotesPlugin__default = /*#__PURE__*/_interopDefaultLegacy(NotesPlugin);
-var SearchPlugin__default = /*#__PURE__*/_interopDefaultLegacy(SearchPlugin);
-var ZoomPlugin__default = /*#__PURE__*/_interopDefaultLegacy(ZoomPlugin);
+var HighlightPlugin__default = /*#__PURE__*/_interopDefaultLegacy(HighlightPlugin$1);
+var MathPlugin__default = /*#__PURE__*/_interopDefaultLegacy(MathPlugin$1);
+var MarkdownPlugin__default = /*#__PURE__*/_interopDefaultLegacy(MarkdownPlugin$1);
+var NotesPlugin__default = /*#__PURE__*/_interopDefaultLegacy(NotesPlugin$1);
+var SearchPlugin__default = /*#__PURE__*/_interopDefaultLegacy(SearchPlugin$1);
+var ZoomPlugin__default = /*#__PURE__*/_interopDefaultLegacy(ZoomPlugin$1);
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -681,42 +681,19 @@ function Video(_ref) {
   }));
 }
 
-Object.defineProperty(exports, 'HighlightPlugin', {
-  enumerable: true,
-  get: function () {
-    return HighlightPlugin__default['default'];
-  }
-});
-Object.defineProperty(exports, 'MathPlugin', {
-  enumerable: true,
-  get: function () {
-    return MathPlugin__default['default'];
-  }
-});
-Object.defineProperty(exports, 'MarkdownPlugin', {
-  enumerable: true,
-  get: function () {
-    return MarkdownPlugin__default['default'];
-  }
-});
-Object.defineProperty(exports, 'NotesPlugin', {
-  enumerable: true,
-  get: function () {
-    return NotesPlugin__default['default'];
-  }
-});
-Object.defineProperty(exports, 'SearchPlugin', {
-  enumerable: true,
-  get: function () {
-    return SearchPlugin__default['default'];
-  }
-});
-Object.defineProperty(exports, 'ZoomPlugin', {
-  enumerable: true,
-  get: function () {
-    return ZoomPlugin__default['default'];
-  }
-});
+/*!
+ * revealjs-react 1.0.0
+ * MIT licensed
+ *
+ * Copyright (C) 2020 Blake Nedved, https://blakeanedved.github.io/
+ */
+var HighlightPlugin = HighlightPlugin__default['default'];
+var MathPlugin = MathPlugin__default['default'];
+var MarkdownPlugin = MarkdownPlugin__default['default'];
+var NotesPlugin = NotesPlugin__default['default'];
+var SearchPlugin = SearchPlugin__default['default'];
+var ZoomPlugin = ZoomPlugin__default['default']; // types for reveal.js
+
 exports.Audio = Audio;
 exports.BlockQuote = BlockQuote;
 exports.Code = Code;
@@ -731,17 +708,23 @@ exports.H4 = H4;
 exports.H5 = H5;
 exports.H6 = H6;
 exports.Header = Header;
+exports.HighlightPlugin = HighlightPlugin;
 exports.IFrame = IFrame;
 exports.Image = Image;
 exports.Li = Li;
 exports.Link = Link;
 exports.Main = Main;
+exports.MarkdownPlugin = MarkdownPlugin;
+exports.MathPlugin = MathPlugin;
 exports.Note = Note;
+exports.NotesPlugin = NotesPlugin;
 exports.Ol = Ol;
 exports.P = P;
 exports.RevealJS = RevealJS;
+exports.SearchPlugin = SearchPlugin;
 exports.Slide = Slide;
 exports.Span = Span;
 exports.Ul = Ul;
 exports.Video = Video;
+exports.ZoomPlugin = ZoomPlugin;
 //# sourceMappingURL=index.js.map
