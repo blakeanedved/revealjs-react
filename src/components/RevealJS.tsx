@@ -4,7 +4,7 @@ import Reveal, { RevealPlugin } from 'reveal.js';
 // Styles
 import 'reveal.js/dist/reveal.css';
 import { BackgroundRepeat, TransitionAtoms, TransitionSpeed } from '../types';
-import RevealProvider, { defaultContextValue, RevealContext, RevealContextType } from './RevealProvider';
+import RevealProvider, { defaultContextValue, RevealContextType } from './RevealProvider';
 export interface RevealJSProps {
   children: React.ReactNode;
   plugins?: RevealPlugin[];

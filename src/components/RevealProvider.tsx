@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useMemo } from "react";
+import React, { createContext, ReactNode } from "react";
 import Reveal from "../../types/reveal.js";
 
 export interface RevealContextType {
