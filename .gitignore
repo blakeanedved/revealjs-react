@@ -1,2 +1,7 @@
 node_modules
 test/bundle.js
+dist/
+index.esm.js
+index.esm.js.map
+index.js
+index.js.map

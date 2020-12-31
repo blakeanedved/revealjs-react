@@ -14,7 +14,16 @@ export interface RevealSlideSize {
   presentationWidth: number;
   presentationHeight: number;
 }
+
+export interface RevealDeckState {
+  indexh: number;
+  indexv: number;
+  indexf?: number;
+  overview: boolean;
+  paused: boolean;
+}
 export default class Reveal {
+  constructor(rootEl: HTMLDivElement, config: RevealConfig);
   constructor(config: RevealConfig);
   slide: (indexh: number, indexv?: number, indexh?: number) => void;
   left: RevealNavigate;
@@ -31,6 +40,7 @@ export default class Reveal {
   shuffle: () => void;
   getConfig: () => RevealConfig;
   getScale: () => number;
+  getState: () => RevealDeckState;
   getComputedSlideSize: () => RevealSlideSize;
   getIndices: (slide?: HTMLElement) => RevealSlideCoordinates;
   getProgress: () => number;
