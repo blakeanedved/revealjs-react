@@ -11,7 +11,9 @@
   "module": "index.esm.js",
   "scripts": {
     "build": "rollup -c && tsc",
-    "build-test": "webpack"
+    "build-test": "webpack",
+    "pre-publish": "npm run build",
+    "publish": "npm publish --access public"
   },
   "repository": {
     "type": "git",
