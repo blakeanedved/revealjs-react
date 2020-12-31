@@ -552,15 +552,14 @@ is a full major version out of date.
 import { useReveal } from "@gregcello/revealjs-react";
 
 export function MyComponent() {
-  const { reveal, readyPromise } = useReveal();
+  const { reveal } = useReveal();
   useEffect(() => {
-    if (!reveal || !readyPromise) {
+    if (!reveal) {
       return;
     }
-    readyPromise.then(() => {
-      // interact with reveal API
-      reveal.on('slidechanged', () => { /* do something */ });
-    })
+    // interact with reveal API - reveal is only set
+    // when it is initialized and the API is ready to use
+    reveal.on('slidechanged', () => { /* do something */ });
   }, [reveal]);
 }
 ```
@@ -574,7 +573,8 @@ export function MyPresentation() {
   const { reveal, readyPromise } = useReveal();
   // don't do this!
   return (
-    <RevealJs>...
+    <RevealJs>
+    { /* ... slides go here */ }
     </RevealJs>
   )
 ```
