@@ -80,6 +80,11 @@ All components support the following properties:
 
 ### RevealJS
 
+The properties are the same as the configuration object passed to `Reveal.initialize()`. This package
+adds an additional property `onDeckReady` which is called when initialization has succeeded and the
+API is ready to interact. Alternatively, to define custom interactions with child components, use the
+[useReveal hook](#usereveal).
+
 ```ts
   plugins = [],
 
@@ -364,6 +369,9 @@ All components support the following properties:
   // Bounds for smallest/largest possible scale to apply to content
   minScale = 0.2,
   maxScale = 2.0,
+
+  // a callback to access the deck when it is ready for interaction, accepts a single parameter.
+  onDeckReady,
 ```
 
 ### Slide
@@ -556,6 +564,22 @@ export function MyComponent() {
   }, [reveal]);
 }
 ```
+
+Note that this hook must be used in a child component tp the `RevealJs` component. This will not work:
+
+```ts
+import { useReveal, RevealJS } from "@gregcello/revealjs-react";
+
+export function MyPresentation() {
+  const { reveal, readyPromise } = useReveal();
+  // don't do this!
+  return (
+    <RevealJs>...
+    </RevealJs>
+  )
+```
+
+Instead, use the `onDeckReady` prop as documented [in the RevealJS component](#revealjs)
 
 ## Using plugins
 

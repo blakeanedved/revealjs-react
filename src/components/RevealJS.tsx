@@ -86,6 +86,8 @@ export interface RevealJSProps {
   margin?: number;
   minScale?: number;
   maxScale?: number;
+
+  onDeckReady?: (deck: Reveal) => void;
 }
 
 export default function RevealJS({
@@ -374,6 +376,9 @@ export default function RevealJS({
   // Bounds for smallest/largest possible scale to apply to content
   minScale = 0.2,
   maxScale = 2.0,
+
+  // a callback to access the deck when it is ready for interaction
+  onDeckReady,
 }: RevealJSProps) {
   const [revealContext, setContextValue] = useState<RevealContextType>(defaultContextValue);
   useEffect(() => {
@@ -448,7 +453,9 @@ export default function RevealJS({
       maxScale,
     });
 
-    setContextValue({ reveal, readyPromise: reveal.initialize() });
+    setContextValue({ reveal, readyPromise: reveal.initialize().then(() => {
+      onDeckReady?.(reveal);
+    }) });
   }, [
     plugins,
     controls,
