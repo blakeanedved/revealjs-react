@@ -12,7 +12,7 @@
   "scripts": {
     "build": "rollup -c && tsc",
     "build-test": "webpack",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "publish": "npm publish --access public"
   },
   "repository": {
