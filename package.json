@@ -1,6 +1,6 @@
 {
   "name": "@gregcello/revealjs-react",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "A React wrapper for the RevealJS Presentation Library.",
   "keywords": [
     "React",
@@ -13,7 +13,7 @@
     "build": "rollup -c && tsc",
     "build-test": "webpack",
     "prepare": "npm run build",
-    "publish": "npm publish --access public"
+    "release": "npm publish --access public"
   },
   "repository": {
     "type": "git",
