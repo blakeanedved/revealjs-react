@@ -1,13 +1,16 @@
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
-import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
 
 const packageJson = require('./package.json');
 
+const extensions = [
+  '.js', '.jsx', '.ts', '.tsx',
+];
+
 export default {
-  input: 'src/index.js',
+  input: 'src/index.ts',
   output: [
     {
       file: packageJson.main,
@@ -22,13 +25,16 @@ export default {
   ],
   plugins: [
     peerDepsExternal(),
-    resolve(),
-    babel({
-      exclude: 'node_modules/**',
-      presets: ['@babel/preset-env', '@babel/preset-react'],
+    resolve({
+      extensions,
     }),
-    commonjs(),
+    babel({
+      extensions,
+      babelHelpers: 'bundled',
+      exclude: 'node_modules/**',
+      include: ['src/**/*', 'plugins/**/*'],
+      presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+    }),
     postcss(),
   ],
-  external: ['react'],
 };
