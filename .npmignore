@@ -1,2 +1,8 @@
 node_modules
-test/bundle.js
+test/
+.babelrc
+.eslintrc.json
+.prettierrc
+rollup.config.js
+webpack.config.js
+dist/**/*.js
