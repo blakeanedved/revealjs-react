@@ -23,7 +23,7 @@ import {
   P,
   Span,
   Ul,
-} from "./components/SimpleComponents";
+} from './components/SimpleComponents';
 import type {
   HProps,
   BlockQuoteProps,
@@ -38,7 +38,7 @@ import type {
   PProps,
   SpanProps,
   UlProps,
-} from "./components/SimpleComponents";
+} from './components/SimpleComponents';
 import Audio from './components/Audio';
 import type { AudioProps } from './components/Audio';
 import Code from './components/Code';
@@ -57,14 +57,18 @@ import Slide from './components/Slide';
 import type { SlideProps } from './components/Slide';
 import Video from './components/Video';
 import type { VideoProps } from './components/Video';
+import { RevealContext } from "./components/RevealProvider";
+
+// hooks
+import useReveal from './hooks/useReveal';
 
 // plugins
-import UntypedHighlightPlugin from "./plugins/HighlightPlugin";
-import UntypedMathPlugin from "./plugins/MathPlugin";
-import UntypedMarkdownPlugin from "./plugins/MarkdownPlugin";
-import UntypedNotesPlugin from "./plugins/NotesPlugin";
-import UntypedSearchPlugin from "./plugins/SearchPlugin";
-import UntypedZoomPlugin from "./plugins/ZoomPlugin";
+import UntypedHighlightPlugin from './plugins/HighlightPlugin';
+import UntypedMathPlugin from './plugins/MathPlugin';
+import UntypedMarkdownPlugin from './plugins/MarkdownPlugin';
+import UntypedNotesPlugin from './plugins/NotesPlugin';
+import UntypedSearchPlugin from './plugins/SearchPlugin';
+import UntypedZoomPlugin from './plugins/ZoomPlugin';
 
 const HighlightPlugin: RevealPlugin = UntypedHighlightPlugin;
 const MathPlugin: RevealPlugin = UntypedMathPlugin;
@@ -81,11 +85,13 @@ import type {
   RevealNavigate,
   RevealRoutes,
   RevealSlideCoordinates,
-  RevealSlideSize
-} from "../types/reveal.js";
-import type Reveal from "../types/reveal.js";
+  RevealSlideSize,
+} from '../types/reveal.js';
+import type Reveal from '../types/reveal.js';
 
 export {
+  useReveal,
+  RevealContext,
   Audio,
   BlockQuote,
   Code,

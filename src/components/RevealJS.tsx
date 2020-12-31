@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Reveal, { RevealPlugin } from 'reveal.js';
 
 // Styles
 import 'reveal.js/dist/reveal.css';
 import { BackgroundRepeat, TransitionAtoms, TransitionSpeed } from '../types';
+import RevealProvider, { defaultContextValue, RevealContext, RevealContextType } from './RevealProvider';
 export interface RevealJSProps {
   children: React.ReactNode;
   plugins?: RevealPlugin[];
@@ -374,8 +375,9 @@ export default function RevealJS({
   minScale = 0.2,
   maxScale = 2.0,
 }: RevealJSProps) {
+  const [revealContext, setContextValue] = useState<RevealContextType>(defaultContextValue);
   useEffect(() => {
-    const deck = new Reveal({
+    const reveal = new Reveal({
       plugins,
 
       controls,
@@ -446,7 +448,7 @@ export default function RevealJS({
       maxScale,
     });
 
-    deck.initialize();
+    setContextValue({ reveal, readyPromise: reveal.initialize() });
   }, [
     plugins,
     controls,
@@ -519,7 +521,11 @@ export default function RevealJS({
 
   return (
     <div className="reveal">
-      <div className="slides">{children}</div>
+      <div className="slides">
+        <RevealProvider reveal={revealContext}>
+          {children}
+        </RevealProvider>
+      </div>
     </div>
   );
 }

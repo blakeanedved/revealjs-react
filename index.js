@@ -126,6 +126,62 @@ function _objectWithoutProperties(source, excluded) {
   return target;
 }
 
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+  return arr2;
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
 function getClassNameProps(baseProps) {
   var className = baseProps.className,
       fragment = baseProps.fragment,
@@ -358,6 +414,15 @@ function Note(props) {
   }));
 }
 
+var RevealContext = /*#__PURE__*/React.createContext(null);
+function RevealProvider(_ref) {
+  var reveal = _ref.reveal,
+      children = _ref.children;
+  return /*#__PURE__*/React__default['default'].createElement(RevealContext.Provider, {
+    value: reveal
+  }, children);
+}
+
 function RevealJS(_ref) {
   var children = _ref.children,
       _ref$plugins = _ref.plugins,
@@ -494,6 +559,12 @@ function RevealJS(_ref) {
       minScale = _ref$minScale === void 0 ? 0.2 : _ref$minScale,
       _ref$maxScale = _ref.maxScale,
       maxScale = _ref$maxScale === void 0 ? 2.0 : _ref$maxScale;
+
+  var _useState = React.useState(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      reveal = _useState2[0],
+      setDeck = _useState2[1];
+
   React.useEffect(function () {
     var deck = new Reveal__default['default']({
       plugins: plugins,
@@ -565,12 +636,15 @@ function RevealJS(_ref) {
       maxScale: maxScale
     });
     deck.initialize();
+    setDeck(deck);
   }, [plugins, controls, controlsTutorial, controlsLayout, controlsBackArrows, progress, slideNumber, showSlideNumber, hashOneBasedIndex, hash, respondToHashChanges, history, keyboard, keyboardCondition, disableLayout, overview, center, touch, loop, rtl, navigationMode, shuffle, fragments, fragmentInURL, embedded, help, pause, showNotes, autoPlayMedia, preloadIframes, autoAnimate, autoAnimateMatcher, autoAnimateEasing, autoAnimateDuration, autoAnimateUnmatched, autoAnimateStyles, autoSlide, autoSlideStoppable, autoSlideMethod, defaultTiming, mouseWheel, previewLinks, postMessage, postMessageEvents, focusBodyOnPageVisibilityChange, transition, transitionSpeed, backgroundTransition, pdfMaxPagesPerSlide, pdfSeparateFragments, pdfPageHeightOffset, viewDistance, mobileViewDistance, display, hideInactiveCursor, hideCursorTime, parallaxBackgroundImage, parallaxBackgroundRepeat, parallaxBackgroundPosition, parallaxBackgroundSize, parallaxBackgroundHorizontal, parallaxBackgroundVertical, width, height, margin, minScale, maxScale]);
   return /*#__PURE__*/React__default['default'].createElement("div", {
     className: "reveal"
   }, /*#__PURE__*/React__default['default'].createElement("div", {
     className: "slides"
-  }, children));
+  }, /*#__PURE__*/React__default['default'].createElement(RevealProvider, {
+    reveal: reveal
+  }, children)));
 }
 
 function Slide(_ref) {
@@ -681,6 +755,10 @@ function Video(_ref) {
   }));
 }
 
+function useReveal() {
+  return React.useContext(RevealContext);
+}
+
 /*!
  * revealjs-react 1.0.0
  * MIT licensed
@@ -720,6 +798,7 @@ exports.Note = Note;
 exports.NotesPlugin = NotesPlugin;
 exports.Ol = Ol;
 exports.P = P;
+exports.RevealContext = RevealContext;
 exports.RevealJS = RevealJS;
 exports.SearchPlugin = SearchPlugin;
 exports.Slide = Slide;
@@ -727,4 +806,5 @@ exports.Span = Span;
 exports.Ul = Ul;
 exports.Video = Video;
 exports.ZoomPlugin = ZoomPlugin;
+exports.useReveal = useReveal;
 //# sourceMappingURL=index.js.map

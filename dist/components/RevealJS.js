@@ -26,6 +26,7 @@ const react_1 = __importStar(require("react"));
 const reveal_js_1 = __importDefault(require("reveal.js"));
 // Styles
 require("reveal.js/dist/reveal.css");
+const RevealProvider_1 = __importDefault(require("./RevealProvider"));
 function RevealJS({ children, plugins = [], 
 // Display presentation control arrows
 controls = true, 
@@ -243,6 +244,7 @@ width = 960, height = 700,
 margin = 0.04, 
 // Bounds for smallest/largest possible scale to apply to content
 minScale = 0.2, maxScale = 2.0, }) {
+    const [reveal, setDeck] = react_1.useState(null);
     react_1.useEffect(() => {
         const deck = new reveal_js_1.default({
             plugins,
@@ -314,6 +316,7 @@ minScale = 0.2, maxScale = 2.0, }) {
             maxScale,
         });
         deck.initialize();
+        setDeck(deck);
     }, [
         plugins,
         controls,
@@ -384,6 +387,7 @@ minScale = 0.2, maxScale = 2.0, }) {
         maxScale,
     ]);
     return (react_1.default.createElement("div", { className: "reveal" },
-        react_1.default.createElement("div", { className: "slides" }, children)));
+        react_1.default.createElement("div", { className: "slides" },
+            react_1.default.createElement(RevealProvider_1.default, { reveal: reveal }, children))));
 }
 exports.default = RevealJS;

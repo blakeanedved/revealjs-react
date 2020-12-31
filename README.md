@@ -35,6 +35,8 @@ A Typescript/React wrapper for the RevealJS Presentation Library with types for 
       - [Ul](#ul)
       - [Video](#video)
       - [Notes](#notes)
+  - [hooks](#hooks)
+    - [useReveal](#usereveal)
   - [Using plugins](#using-plugins)
 
 ## Installation
@@ -528,6 +530,33 @@ The `Audio` component accepts all the parameters of the `audio` html tag, plus t
 
 Add speaker notes with an `aside` by using this component.
 
+## hooks
+
+In order to access the internal `Reveal` object, a hook is provided.
+
+### useReveal
+
+This can be used to retrieve the current Reveal instance. Note that until the deck is initialized,
+it will be `null`. The type of the deck is strictly typed using custom internal types, as `@types/reveal`
+is a full major version out of date.
+
+```ts
+import { useReveal } from "@gregcello/revealjs-react";
+
+export function MyComponent() {
+  const { reveal, readyPromise } = useReveal();
+  useEffect(() => {
+    if (!reveal || !readyPromise) {
+      return;
+    }
+    readyPromise.then(() => {
+      // interact with reveal API
+      reveal.on('slidechanged', () => { /* do something */ });
+    })
+  }, [reveal]);
+}
+```
+
 ## Using plugins
 
 Built-in plugins from reveal.js are available as direct imports
@@ -555,4 +584,5 @@ function MyPresentation() {
 }
 ```
 
-Use only the plugins you need.
+Use only the plugins you need. These plugins are strictly typed using custom typescript definitions.
+To define or type your own custom plugin, use the `RevealPlugin` type exported from `@gregcello/revealjs-react`
