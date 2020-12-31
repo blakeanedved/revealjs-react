@@ -1,1 +1,1 @@
-export default function useReveal(): import("..").Reveal | null;
+export default function useReveal(): import("../components/RevealProvider").RevealContextType;

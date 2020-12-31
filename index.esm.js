@@ -399,7 +399,11 @@ function Note(props) {
   }));
 }
 
-var RevealContext = /*#__PURE__*/createContext(null);
+var defaultContextValue = {
+  reveal: null,
+  readyPromise: null
+};
+var RevealContext = /*#__PURE__*/createContext(defaultContextValue);
 function RevealProvider(_ref) {
   var reveal = _ref.reveal,
       children = _ref.children;
@@ -543,15 +547,16 @@ function RevealJS(_ref) {
       _ref$minScale = _ref.minScale,
       minScale = _ref$minScale === void 0 ? 0.2 : _ref$minScale,
       _ref$maxScale = _ref.maxScale,
-      maxScale = _ref$maxScale === void 0 ? 2.0 : _ref$maxScale;
+      maxScale = _ref$maxScale === void 0 ? 2.0 : _ref$maxScale,
+      onDeckReady = _ref.onDeckReady;
 
-  var _useState = useState(null),
+  var _useState = useState(defaultContextValue),
       _useState2 = _slicedToArray(_useState, 2),
-      reveal = _useState2[0],
-      setDeck = _useState2[1];
+      revealContext = _useState2[0],
+      setContextValue = _useState2[1];
 
   useEffect(function () {
-    var deck = new Reveal({
+    var reveal = new Reveal({
       plugins: plugins,
       controls: controls,
       controlsTutorial: controlsTutorial,
@@ -620,15 +625,19 @@ function RevealJS(_ref) {
       minScale: minScale,
       maxScale: maxScale
     });
-    deck.initialize();
-    setDeck(deck);
+    setContextValue({
+      reveal: reveal,
+      readyPromise: reveal.initialize().then(function () {
+        onDeckReady === null || onDeckReady === void 0 ? void 0 : onDeckReady(reveal);
+      })
+    });
   }, [plugins, controls, controlsTutorial, controlsLayout, controlsBackArrows, progress, slideNumber, showSlideNumber, hashOneBasedIndex, hash, respondToHashChanges, history, keyboard, keyboardCondition, disableLayout, overview, center, touch, loop, rtl, navigationMode, shuffle, fragments, fragmentInURL, embedded, help, pause, showNotes, autoPlayMedia, preloadIframes, autoAnimate, autoAnimateMatcher, autoAnimateEasing, autoAnimateDuration, autoAnimateUnmatched, autoAnimateStyles, autoSlide, autoSlideStoppable, autoSlideMethod, defaultTiming, mouseWheel, previewLinks, postMessage, postMessageEvents, focusBodyOnPageVisibilityChange, transition, transitionSpeed, backgroundTransition, pdfMaxPagesPerSlide, pdfSeparateFragments, pdfPageHeightOffset, viewDistance, mobileViewDistance, display, hideInactiveCursor, hideCursorTime, parallaxBackgroundImage, parallaxBackgroundRepeat, parallaxBackgroundPosition, parallaxBackgroundSize, parallaxBackgroundHorizontal, parallaxBackgroundVertical, width, height, margin, minScale, maxScale]);
   return /*#__PURE__*/React.createElement("div", {
     className: "reveal"
   }, /*#__PURE__*/React.createElement("div", {
     className: "slides"
   }, /*#__PURE__*/React.createElement(RevealProvider, {
-    reveal: reveal
+    reveal: revealContext
   }, children)));
 }
 

@@ -19,9 +19,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RevealContext = void 0;
+exports.RevealContext = exports.defaultContextValue = void 0;
 const react_1 = __importStar(require("react"));
-exports.RevealContext = react_1.createContext(null);
+exports.defaultContextValue = {
+    reveal: null,
+    readyPromise: null,
+};
+exports.RevealContext = react_1.createContext(exports.defaultContextValue);
 function RevealProvider({ reveal, children }) {
     return (react_1.default.createElement(exports.RevealContext.Provider, { value: reveal }, children));
 }

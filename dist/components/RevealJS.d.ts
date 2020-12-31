@@ -1,5 +1,5 @@
 import React from 'react';
-import { RevealPlugin } from 'reveal.js';
+import Reveal, { RevealPlugin } from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
 import { BackgroundRepeat, TransitionAtoms, TransitionSpeed } from '../types';
 export interface RevealJSProps {
@@ -75,6 +75,7 @@ export interface RevealJSProps {
     margin?: number;
     minScale?: number;
     maxScale?: number;
+    onDeckReady?: (deck: Reveal) => void;
 }
 export default function RevealJS({ children, plugins, controls, controlsTutorial, controlsLayout, controlsBackArrows, progress, slideNumber, showSlideNumber, hashOneBasedIndex, hash, respondToHashChanges, history, keyboard, keyboardCondition, disableLayout, overview, center, touch, loop, rtl, navigationMode, shuffle, fragments, fragmentInURL, embedded, help, pause, showNotes, autoPlayMedia, preloadIframes, autoAnimate, autoAnimateMatcher, autoAnimateEasing, autoAnimateDuration, autoAnimateUnmatched, autoAnimateStyles, autoSlide, autoSlideStoppable, autoSlideMethod, defaultTiming, mouseWheel, previewLinks, postMessage, postMessageEvents, focusBodyOnPageVisibilityChange, transition, // none/fade/slide/convex/concave/zoom
 transitionSpeed, // default/fast/slow
@@ -83,4 +84,4 @@ pdfMaxPagesPerSlide, pdfSeparateFragments, pdfPageHeightOffset, viewDistance, mo
 parallaxBackgroundSize, // CSS syntax, e.g. "3000px 2000px"
 parallaxBackgroundRepeat, // repeat/repeat-x/repeat-y/no-repeat/initial/inherit
 parallaxBackgroundPosition, // CSS syntax, e.g. "top left"
-parallaxBackgroundHorizontal, parallaxBackgroundVertical, width, height, margin, minScale, maxScale, }: RevealJSProps): JSX.Element;
+parallaxBackgroundHorizontal, parallaxBackgroundVertical, width, height, margin, minScale, maxScale, onDeckReady, }: RevealJSProps): JSX.Element;
