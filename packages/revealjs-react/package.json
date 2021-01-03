@@ -12,8 +12,8 @@
   "module": "index.esm.js",
   "scripts": {
     "build": "rollup -c && tsc",
-    "prepare": "yarn build",
-    "release": "yarn publish --access public"
+    "prepare": "npm run build",
+    "release": "npm publish --access public"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 node_modules
 test/
-.babelrc
+babel-config.js
 .eslintrc.json
 .prettierrc
 rollup.config.js
