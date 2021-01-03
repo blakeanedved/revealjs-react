@@ -1,0 +1,33 @@
+{
+  "name": "@gregcello/revealjs-react",
+  "version": "0.3.1",
+  "description": "A React wrapper for the RevealJS Presentation Library.",
+  "keywords": [
+    "React",
+    "Reveal.js",
+    "Typescript"
+  ],
+  "main": "index.js",
+  "types": "dist/index.d.ts",
+  "module": "index.esm.js",
+  "scripts": {
+    "build": "rollup -c && tsc",
+    "prepare": "yarn build",
+    "release": "yarn publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cellog/revealjs-react.git"
+  },
+  "author": "Gregory Beaver <greg.beaver.cello@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cellog/revealjs-react/issues"
+  },
+  "homepage": "https://github.com/cellog/revealjs-react#readme",
+  "peerDependencies": {
+    "react": "^16.0.0 || ^17.0.0",
+    "react-dom": "^16.0.0 || ^17.0.0",
+    "reveal.js": "^4.0.2"
+  }
+}

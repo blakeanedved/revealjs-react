@@ -1,34 +1,18 @@
 {
-  "name": "@gregcello/revealjs-react",
+  "name": "@gregcello/revealjs-react-monorepo",
+  "private": true,
   "version": "0.3.1",
-  "description": "A React wrapper for the RevealJS Presentation Library.",
+  "description": "A Typescript/React wrapper for the RevealJS Presentation Library.",
   "keywords": [
     "React",
     "Reveal.js"
   ],
-  "main": "index.js",
-  "types": "dist/index.d.ts",
-  "module": "index.esm.js",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "build": "rollup -c && tsc",
-    "build-test": "webpack",
-    "prepare": "npm run build",
-    "release": "npm publish --access public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cellog/revealjs-react.git"
-  },
-  "author": "Blake Nedved <blakeanedved@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/cellog/revealjs-react/issues"
-  },
-  "homepage": "https://github.com/cellog/revealjs-react#readme",
-  "peerDependencies": {
-    "react": "^16.0.0 || ^17.0.0",
-    "react-dom": "^16.0.0 || ^17.0.0",
-    "reveal.js": "^4.0.2"
+    "build": "yarn workspace @gregcello/revealjs-react build",
+    "release": "yarn workspace @gregcello/revealjs-react release"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
@@ -53,6 +37,9 @@
     "express": "^4.17.1",
     "file-loader": "^6.2.0",
     "prettier": "^2.2.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "reveal.js": "4.0.2",
     "rollup": "^2.35.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.0",
