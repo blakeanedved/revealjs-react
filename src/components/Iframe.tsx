@@ -3,9 +3,9 @@ import { MakeProps, getClassNameProps } from './BaseComponent';
 
 export interface IFrameProps {
   height?: number;
-  lazy?: boolean;
-  preload?: string;
   src: string;
+  lazy?: boolean;
+  preload?: boolean;
   width?: number;
 }
 
@@ -25,7 +25,7 @@ function IFrame({
       data-id={id}
       id={id}
       src={lazy ? undefined : src}
-      data-src={lazy ? src : false}
+      data-src={lazy ? src : undefined}
       data-preload={preload}
       width={width}
       height={height}

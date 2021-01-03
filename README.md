@@ -481,7 +481,10 @@ supports all the standard `header` parameters plus the reveal.js addons above
 
 #### IFrame
 
-supports all the standard `iframe` parameters plus the reveal.js addons above, and these
+supports all the standard `iframe` parameters plus the reveal.js addons above, and these additional properties:
+
+`src` must be set to the iframe source. pass in `lazy={true}` to lazy-load the iframe. pass `preload={true}`
+if it is safe to pre-load the iframe
 
 #### Image
 
