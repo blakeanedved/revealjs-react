@@ -20,6 +20,7 @@ export interface SlideProps {
   id?: string;
   transition?: Transitions;
   transitionSpeed?: TransitionSpeed;
+  timing?: number;
   visibility?: 'uncounted' | 'hidden';
 }
 
@@ -43,6 +44,7 @@ function Slide({
   transition,
   transitionSpeed,
   visibility,
+  timing,
 }: SlideProps) {
   return (
     <section
@@ -64,6 +66,7 @@ function Slide({
       data-background-interactive={backgroundInteractive}
       data-transition={transition}
       data-transition-speed={transitionSpeed}
+      data-timing={timing}
     >
       {children}
     </section>

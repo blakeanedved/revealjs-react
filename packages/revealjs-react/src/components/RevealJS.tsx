@@ -74,6 +74,7 @@ export interface RevealJSProps {
   autoSlideStoppable?: boolean;
   autoSlideMethod?: (() => void) | null;
   defaultTiming?: number | null;
+  totalTime?: number;
   mouseWheel?: boolean;
   previewLinks?: boolean;
   postMessage?: boolean;
@@ -290,6 +291,9 @@ export default function RevealJS({
   // speaker view
   defaultTiming = null,
 
+  // total time for the presentation in seconds. This will override defaultTiming
+  totalTime = undefined,
+
   // Enable slide navigation via mouse wheel
   mouseWheel = false,
 
@@ -427,6 +431,7 @@ export default function RevealJS({
     autoSlideStoppable,
     autoSlideMethod,
     defaultTiming,
+    totalTime,
     mouseWheel,
     previewLinks,
     postMessage,
@@ -496,6 +501,7 @@ export default function RevealJS({
     autoSlideStoppable,
     autoSlideMethod,
     defaultTiming,
+    totalTime,
     mouseWheel,
     previewLinks,
     postMessage,
